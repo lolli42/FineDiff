@@ -18,13 +18,13 @@ class OpcodesTest extends TestCase
 
     public function testInstanceOf()
     {
-        $this->assertTrue(is_a(new Opcodes, OpcodesInterface::class));
+        self::assertTrue(is_a(new Opcodes, OpcodesInterface::class));
     }
 
     public function testEmptyOpcodes()
     {
         $opcodes = new Opcodes;
-        $this->assertEmpty($opcodes->getOpcodes());
+        self::assertEmpty($opcodes->getOpcodes());
     }
 
     public function testSetOpcodes()
@@ -36,7 +36,7 @@ class OpcodesTest extends TestCase
         $opcodes->setOpcodes(array($operation));
 
         $opcodes = $opcodes->getOpcodes();
-        $this->assertEquals($opcodes[0], 'testing');
+        self::assertEquals($opcodes[0], 'testing');
     }
 
     public function testNotOperation()
@@ -59,9 +59,9 @@ class OpcodesTest extends TestCase
 
         $opcodes = $opcodes->getOpcodes();
 
-        $this->assertTrue(is_array($opcodes));
-        $this->assertEquals($opcodes[0], 'c5i');
-        $this->assertEquals($opcodes[1], '2c6d');
+        self::assertTrue(is_array($opcodes));
+        self::assertEquals($opcodes[0], 'c5i');
+        self::assertEquals($opcodes[1], '2c6d');
     }
 
     public function testGenerate()
@@ -75,7 +75,7 @@ class OpcodesTest extends TestCase
         $opcodes = new Opcodes;
         $opcodes->setOpcodes(array($operation_one, $operation_two));
 
-        $this->assertEquals($opcodes->generate(), 'c5i2c6d');
+        self::assertEquals($opcodes->generate(), 'c5i2c6d');
     }
 
     public function testToString()
@@ -89,7 +89,7 @@ class OpcodesTest extends TestCase
         $opcodes = new Opcodes;
         $opcodes->setOpcodes(array($operation_one, $operation_two));
 
-        $this->assertEquals((string)$opcodes, 'c5i2c6d');
-        $this->assertEquals((string)$opcodes, $opcodes->generate());
+        self::assertEquals((string)$opcodes, 'c5i2c6d');
+        self::assertEquals((string)$opcodes, $opcodes->generate());
     }
 }

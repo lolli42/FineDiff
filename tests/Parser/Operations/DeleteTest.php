@@ -11,27 +11,27 @@ class DeleteTest extends TestCase
     public function testImplementsOperationInterface()
     {
         $replace = new Delete(10);
-        $this->assertTrue(is_a($replace, OperationInterface::class));
+        self::assertTrue(is_a($replace, OperationInterface::class));
     }
 
     public function testGetFromLen()
     {
         $delete = new Delete(10);
-        $this->assertEquals($delete->getFromLen(), 10);
+        self::assertEquals($delete->getFromLen(), 10);
     }
 
     public function testGetToLen()
     {
         $delete = new Delete(342);
-        $this->assertEquals($delete->getToLen(), 0);
+        self::assertEquals($delete->getToLen(), 0);
     }
 
     public function testGetOpcode()
     {
         $delete = new Delete(1);
-        $this->assertEquals($delete->getOpcode(), 'd');
+        self::assertEquals($delete->getOpcode(), 'd');
 
         $delete = new Delete(24);
-        $this->assertEquals($delete->getOpcode(), 'd24');
+        self::assertEquals($delete->getOpcode(), 'd24');
     }
 }

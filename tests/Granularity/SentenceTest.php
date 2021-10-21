@@ -22,14 +22,14 @@ class SentenceTest extends TestCase
 
     public function testExtendsAndImplements()
     {
-        $this->assertTrue(is_a($this->character, Granularity::class));
-        $this->assertTrue(is_a($this->character, GranularityInterface::class));
-        $this->assertTrue(is_a($this->character, \ArrayAccess::class));
-        $this->assertTrue(is_a($this->character, \Countable::class));
+        self::assertTrue(is_a($this->character, Granularity::class));
+        self::assertTrue(is_a($this->character, GranularityInterface::class));
+        self::assertTrue(is_a($this->character, \ArrayAccess::class));
+        self::assertTrue(is_a($this->character, \Countable::class));
     }
 
     public function testGetDelimiters()
     {
-        $this->assertEquals($this->character->getDelimiters(), $this->delimiters);
+        self::assertEquals($this->character->getDelimiters(), $this->delimiters);
     }
 }

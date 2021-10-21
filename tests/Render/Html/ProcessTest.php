@@ -26,6 +26,6 @@ class ProcessTest extends TestCase
 
         $html = $this->html->process('Hello worlds', $opcodes);
 
-        $this->assertEquals($html, 'Hello<ins>2</ins> world<del>s</del>');
+        self::assertEquals($html, 'Hello<ins>2</ins> world<del>s</del>');
     }
 }

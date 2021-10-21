@@ -26,13 +26,13 @@ class ParserTest extends TestCase
 
     public function testInstanceOf()
     {
-        $this->assertTrue(is_a($this->parser, ParserInterface::class));
+        self::assertTrue(is_a($this->parser, ParserInterface::class));
     }
 
     public function testDefaultOpcodes()
     {
         $opcodes = $this->parser->getOpcodes();
-        $this->assertTrue(is_a($opcodes, OpcodesInterface::class));
+        self::assertTrue(is_a($opcodes, OpcodesInterface::class));
     }
 
     public function testSetOpcodes()
@@ -42,7 +42,7 @@ class ParserTest extends TestCase
         $this->parser->setOpcodes($opcodes);
 
         $opcodes = $this->parser->getOpcodes();
-        $this->assertEquals($opcodes->foo(), 'bar');
+        self::assertEquals($opcodes->foo(), 'bar');
     }
 
     public function testParseBadGranularity()
