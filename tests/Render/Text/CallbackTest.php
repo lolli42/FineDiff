@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Render\Text;
+namespace cogpowered\FineDiff\Tests\Render\Text;
 
 use cogpowered\FineDiff\Render\Text;
 use PHPUnit\Framework\TestCase;

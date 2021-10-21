@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Delimiters;
+namespace cogpowered\FineDiff\Tests\Delimiters;
 
 use cogpowered\FineDiff\Delimiters;
 use PHPUnit\Framework\TestCase;

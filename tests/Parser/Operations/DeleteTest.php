@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Parser\Operations;
+namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\Delete;
 use PHPUnit\Framework\TestCase;

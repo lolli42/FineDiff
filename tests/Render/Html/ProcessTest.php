@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Render\Html;
+namespace cogpowered\FineDiff\Tests\Render\Html;
 
 use Mockery as m;
 use cogpowered\FineDiff\Render\Html;

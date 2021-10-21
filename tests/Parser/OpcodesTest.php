@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Parser;
+namespace cogpowered\FineDiff\Tests\Parser;
 
 use cogpowered\FineDiff\Exceptions\OperationException;
 use Mockery as m;

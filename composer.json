@@ -26,6 +26,6 @@
         "psr-4": { "cogpowered\\FineDiff\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "FineDiffTests\\": "tests/"}
+        "psr-4": { "cogpowered\\FineDiff\\Tests\\": "tests/"}
     }
 }
