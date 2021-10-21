@@ -31,6 +31,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->delimiters[$offset]);
@@ -39,6 +40,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->delimiters[$offset]) ? $this->delimiters[$offset] : null;
@@ -47,6 +49,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -59,6 +62,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->delimiters[$offset]);
@@ -69,6 +73,7 @@ abstract class Granularity implements GranularityInterface
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->delimiters);
