@@ -12,7 +12,7 @@ class ParagraphTest extends TestCase
         Delimiters::PARAGRAPH,
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->character = new Paragraph;
     }

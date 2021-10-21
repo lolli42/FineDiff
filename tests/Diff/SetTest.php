@@ -8,12 +8,12 @@ use PHPUnit\Framework\TestCase;
 
 class SetTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->diff = new Diff;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

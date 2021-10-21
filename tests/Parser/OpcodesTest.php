@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class OpcodesTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

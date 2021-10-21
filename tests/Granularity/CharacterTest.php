@@ -15,7 +15,7 @@ class CharacterTest extends TestCase
         Delimiters::CHARACTER,
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->character = new Character;
     }

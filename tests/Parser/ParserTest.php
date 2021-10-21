@@ -9,13 +9,13 @@ use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $granularity  = new Character;
         $this->parser = new Parser($granularity);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
