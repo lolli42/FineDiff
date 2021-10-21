@@ -2,8 +2,44 @@ includes:
     - vendor/phpstan/phpstan-mockery/extension.neon
 
 parameters:
-    level: 1
+    level: 2
 
     paths:
         - ./src
         - ./tests
+
+    ignoreErrors:
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Granularity\\\\GranularityInterface\\:\\:justTesting\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/DependencyInjectTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Parser\\\\ParserInterface\\:\\:justTesting\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/DependencyInjectTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Render\\\\RendererInterface\\:\\:justTesting\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/DependencyInjectTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Granularity\\\\GranularityInterface\\:\\:fooBar\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/SetTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Parser\\\\ParserInterface\\:\\:fooBar\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/SetTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Render\\\\RendererInterface\\:\\:fooBar\\(\\)\\.$#"
+            count: 1
+            path: tests/Diff/SetTest.php
+
+        -
+            message: "#^Call to an undefined method cogpowered\\\\FineDiff\\\\Parser\\\\OpcodesInterface\\:\\:foo\\(\\)\\.$#"
+            count: 1
+            path: tests/Parser/ParserTest.php
