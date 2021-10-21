@@ -9,9 +9,26 @@ use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Granularity\Word;
 use cogpowered\FineDiff\Granularity\Sentence;
 use cogpowered\FineDiff\Granularity\Paragraph;
+use PHPUnit\Framework\TestCase;
 
-class SimpleTest extends Base
+class SimpleTest extends TestCase
 {
+    /**
+     * Helper method to retrieve fixture file content.
+     */
+    protected function getFile($file)
+    {
+        $txt = file_get_contents(__DIR__.'/Resources/'.$file.'.txt');
+        $txt = explode('==========', $txt);
+
+        $from    = trim($txt[0]);
+        $to      = trim($txt[1]);
+        $opcodes = trim($txt[2]);
+        $html    = trim($txt[3]);
+
+        return array($from, $to, $opcodes, $html);
+    }
+
     public function testInsertCharacterGranularity()
     {
         list($from, $to, $opcodes, $html) = $this->getFile('character/simple');
