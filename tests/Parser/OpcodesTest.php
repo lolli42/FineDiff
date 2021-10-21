@@ -3,7 +3,7 @@
 namespace cogpowered\FineDiff\Tests\Parser;
 
 use cogpowered\FineDiff\Exceptions\OperationException;
-use Mockery as m;
+use Mockery;
 use cogpowered\FineDiff\Parser\Opcodes;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class OpcodesTest extends TestCase
 {
     public function tearDown(): void
     {
-        m::close();
+        Mockery::close();
     }
 
     public function testInstanceOf()
@@ -27,7 +27,7 @@ class OpcodesTest extends TestCase
 
     public function testSetOpcodes()
     {
-        $operation = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation->shouldReceive('getOpcode')->once()->andReturn('testing');
 
         $opcodes = new Opcodes;
@@ -46,10 +46,10 @@ class OpcodesTest extends TestCase
 
     public function testGetOpcodes()
     {
-        $operation_one = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_one = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
 
-        $operation_two = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_two = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes;
@@ -64,10 +64,10 @@ class OpcodesTest extends TestCase
 
     public function testGenerate()
     {
-        $operation_one = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_one = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
 
-        $operation_two = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_two = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes;
@@ -78,10 +78,10 @@ class OpcodesTest extends TestCase
 
     public function testToString()
     {
-        $operation_one = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_one = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
 
-        $operation_two = m::mock('cogpowered\FineDiff\Parser\Operations\Copy');
+        $operation_two = Mockery::mock('cogpowered\FineDiff\Parser\Operations\Copy');
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes;
