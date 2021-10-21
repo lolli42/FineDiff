@@ -41,11 +41,9 @@ class ParserTest extends TestCase
         $this->assertEquals($opcodes->foo(), 'bar');
     }
 
-    /**
-     * @expectedException cogpowered\FineDiff\Exceptions\GranularityCountException
-     */
     public function testParseBadGranularity()
     {
+        $this->expectException(\cogpowered\FineDiff\Exceptions\GranularityCountException::class);
         $granularity = m::mock('cogpowered\FineDiff\Granularity\Character');
         $granularity->shouldReceive('count')->andReturn(0);
         $parser = new Parser($granularity);

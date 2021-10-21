@@ -18,11 +18,9 @@ class ProcessTest extends TestCase
         m::close();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidOpcode()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->text->process('Hello worlds', 123);
     }
 
