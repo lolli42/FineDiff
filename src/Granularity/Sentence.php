@@ -25,8 +25,8 @@ use cogpowered\FineDiff\Delimiters;
  */
 class Sentence extends Granularity
 {
-    protected $delimiters = array(
+    protected $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
-    );
+    ];
 }

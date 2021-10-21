@@ -3,10 +3,10 @@
 namespace cogpowered\FineDiff\Tests\Parser;
 
 use cogpowered\FineDiff\Exceptions\OperationException;
+use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Operations\Copy;
 use Mockery;
-use cogpowered\FineDiff\Parser\Opcodes;
 use PHPUnit\Framework\TestCase;
 
 class OpcodesTest extends TestCase
@@ -33,7 +33,7 @@ class OpcodesTest extends TestCase
         $operation->shouldReceive('getOpcode')->once()->andReturn('testing');
 
         $opcodes = new Opcodes();
-        $opcodes->setOpcodes(array($operation));
+        $opcodes->setOpcodes([$operation]);
 
         $opcodes = $opcodes->getOpcodes();
         self::assertEquals($opcodes[0], 'testing');
@@ -43,7 +43,7 @@ class OpcodesTest extends TestCase
     {
         $this->expectException(OperationException::class);
         $opcodes = new Opcodes();
-        $opcodes->setOpcodes(array('test'));
+        $opcodes->setOpcodes(['test']);
     }
 
     public function testGetOpcodes()
@@ -55,7 +55,7 @@ class OpcodesTest extends TestCase
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes();
-        $opcodes->setOpcodes(array($operation_one, $operation_two));
+        $opcodes->setOpcodes([$operation_one, $operation_two]);
 
         $opcodes = $opcodes->getOpcodes();
 
@@ -73,7 +73,7 @@ class OpcodesTest extends TestCase
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes();
-        $opcodes->setOpcodes(array($operation_one, $operation_two));
+        $opcodes->setOpcodes([$operation_one, $operation_two]);
 
         self::assertEquals($opcodes->generate(), 'c5i2c6d');
     }
@@ -87,7 +87,7 @@ class OpcodesTest extends TestCase
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
         $opcodes = new Opcodes();
-        $opcodes->setOpcodes(array($operation_one, $operation_two));
+        $opcodes->setOpcodes([$operation_one, $operation_two]);
 
         self::assertEquals((string)$opcodes, 'c5i2c6d');
         self::assertEquals((string)$opcodes, $opcodes->generate());

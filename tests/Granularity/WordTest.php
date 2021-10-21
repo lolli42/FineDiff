@@ -15,11 +15,11 @@ class WordTest extends TestCase
      */
     private $character;
 
-    private $delimiters = array(
+    private $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
         Delimiters::WORD,
-    );
+    ];
 
     public function setUp(): void
     {

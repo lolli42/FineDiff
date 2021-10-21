@@ -34,7 +34,6 @@ interface OpcodesInterface
      *
      * @param array $opcodes Elements must be an instance of OperationInterface.
      * @throws OperationException
-     * @return void
      */
     public function setOpcodes(array $opcodes);
 

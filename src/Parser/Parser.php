@@ -18,8 +18,8 @@
 
 namespace cogpowered\FineDiff\Parser;
 
-use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Exceptions\GranularityCountException;
+use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Parser\Operations\Copy;
 use cogpowered\FineDiff\Parser\Operations\Delete;
 use cogpowered\FineDiff\Parser\Operations\Insert;
@@ -64,7 +64,7 @@ class Parser implements ParserInterface
     /**
      * @var array Holds the individual opcodes as the diff takes place.
      */
-    protected $edits = array();
+    protected $edits = [];
 
     /**
      * @inheritdoc
@@ -124,7 +124,7 @@ class Parser implements ParserInterface
         $this->from_offset  = 0;
         $this->last_edit    = null;
         $this->stackpointer = 0;
-        $this->edits        = array();
+        $this->edits        = [];
 
         // Parse the two string
         $this->process($from_text, $to_text);
@@ -139,7 +139,6 @@ class Parser implements ParserInterface
      *
      * @param string $from_text
      * @param string $to_text
-     * @return void
      */
     protected function process($from_text, $to_text)
     {
@@ -149,7 +148,7 @@ class Parser implements ParserInterface
 
         // Actually perform diff
         $diff = $this->diff($from_text, $to_text, $delimiters);
-        $diff = (is_array($diff)) ? $diff : array();
+        $diff = (is_array($diff)) ? $diff : [];
 
         foreach ($diff as $fragment) {
 
@@ -192,7 +191,7 @@ class Parser implements ParserInterface
             return $this->charDiff($from_text, $to_text);
         }
 
-        $result = array();
+        $result = [];
 
         // fragment-level diffing
         $from_text_len  = mb_strlen($from_text);
@@ -200,11 +199,10 @@ class Parser implements ParserInterface
         $from_fragments = $this->extractFragments($from_text, $delimiters);
         $to_fragments   = $this->extractFragments($to_text, $delimiters);
 
-        $jobs              = array(array(0, $from_text_len, 0, $to_text_len));
-        $cached_array_keys = array();
+        $jobs              = [[0, $from_text_len, 0, $to_text_len]];
+        $cached_array_keys = [];
         $best_from_start = 0;
         $best_to_start = 0;
-
 
         while ($job = array_pop($jobs)) {
 
@@ -229,7 +227,7 @@ class Parser implements ParserInterface
             $best_copy_length = 0;
 
             $from_base_fragment_index = $from_segment_start;
-            $cached_array_keys_for_current_segment = array();
+            $cached_array_keys_for_current_segment = [];
 
             while ($from_base_fragment_index < $from_segment_end) {
                 $from_base_fragment        = $from_fragments[$from_base_fragment_index];
@@ -245,7 +243,7 @@ class Parser implements ParserInterface
 
                     // get only indices which falls within current segment
                     if ($to_segment_start > 0 || $to_segment_end < $to_text_len) {
-                        $to_fragment_indices = array();
+                        $to_fragment_indices = [];
 
                         foreach ($to_all_fragment_indices as $to_fragment_index) {
                             if ($to_fragment_index < $to_segment_start) {
@@ -316,9 +314,9 @@ class Parser implements ParserInterface
             }
 
             if ($best_copy_length) {
-                $jobs[] = array($from_segment_start, $best_from_start, $to_segment_start, $best_to_start);
+                $jobs[] = [$from_segment_start, $best_from_start, $to_segment_start, $best_to_start];
                 $result[$best_from_start * 4 + 2] = new Copy($best_copy_length);
-                $jobs[] = array($best_from_start + $best_copy_length, $from_segment_end, $best_to_start + $best_copy_length, $to_segment_end);
+                $jobs[] = [$best_from_start + $best_copy_length, $from_segment_end, $best_to_start + $best_copy_length, $to_segment_end];
             } else {
                 $result[$from_segment_start * 4 ] = new Replace($from_segment_length, mb_substr($to_text, $to_segment_start, $to_segment_length));
             }
@@ -337,8 +335,8 @@ class Parser implements ParserInterface
      */
     protected function charDiff($from_text, $to_text)
     {
-        $result = array();
-        $jobs   = array(array(0, mb_strlen($from_text), 0, mb_strlen($to_text)));
+        $result = [];
+        $jobs   = [[0, mb_strlen($from_text), 0, mb_strlen($to_text)]];
         $from_copy_start = 0;
         $to_copy_start = 0;
 
@@ -405,9 +403,9 @@ class Parser implements ParserInterface
 
             // match found
             if ($copy_len) {
-                $jobs[] = array($from_segment_start, $from_copy_start, $to_segment_start, $to_copy_start);
+                $jobs[] = [$from_segment_start, $from_copy_start, $to_segment_start, $to_copy_start];
                 $result[$from_copy_start * 4 + 2] = new Copy($copy_len);
-                $jobs[] = array($from_copy_start + $copy_len, $from_segment_end, $to_copy_start + $copy_len, $to_segment_end);
+                $jobs[] = [$from_copy_start + $copy_len, $from_segment_end, $to_copy_start + $copy_len, $to_segment_end];
             }
             // no match,  so delete all, insert all
             else {
@@ -440,7 +438,7 @@ class Parser implements ParserInterface
             return $chars;
         }
 
-        $fragments = array();
+        $fragments = [];
         $start     = 0;
         $end       = 0;
 

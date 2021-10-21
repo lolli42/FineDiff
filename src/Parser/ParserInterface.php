@@ -43,7 +43,6 @@ interface ParserInterface
      * Set the granularity that the parser is working with.
      *
      * @param $granularity GranularityInterface
-     * @return void
      */
     public function setGranularity(GranularityInterface $granularity);
 
@@ -58,7 +57,6 @@ interface ParserInterface
      * Set the opcodes object used to store all the opcodes for this parse.
      *
      * @param OpcodesInterface $opcodes.
-     * @return void
      */
     public function setOpcodes(OpcodesInterface $opcodes);
 

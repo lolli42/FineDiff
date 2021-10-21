@@ -25,10 +25,10 @@ use cogpowered\FineDiff\Delimiters;
  */
 class Character extends Granularity
 {
-    protected $delimiters = array(
+    protected $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
         Delimiters::WORD,
         Delimiters::CHARACTER,
-    );
+    ];
 }

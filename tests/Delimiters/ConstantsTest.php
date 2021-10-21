@@ -24,6 +24,6 @@ class ConstantsTest extends TestCase
 
     public function testCharacterConstant()
     {
-        self::assertEquals(Delimiters::CHARACTER, "");
+        self::assertEquals(Delimiters::CHARACTER, '');
     }
 }

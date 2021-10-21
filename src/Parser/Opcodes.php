@@ -28,7 +28,7 @@ class Opcodes implements OpcodesInterface
     /**
      * @var array Individual opcodes.
      */
-    protected $opcodes = array();
+    protected $opcodes = [];
 
     /**
      * @inheritdoc
@@ -43,7 +43,7 @@ class Opcodes implements OpcodesInterface
      */
     public function setOpcodes(array $opcodes)
     {
-        $this->opcodes = array();
+        $this->opcodes = [];
 
         // Ensure that all elements of the array
         // are of the correct type

@@ -20,12 +20,12 @@ namespace cogpowered\FineDiff;
 
 use cogpowered\FineDiff\Exceptions\GranularityCountException;
 use cogpowered\FineDiff\Exceptions\OperationException;
-use cogpowered\FineDiff\Granularity\GranularityInterface;
-use cogpowered\FineDiff\Render\RendererInterface;
-use cogpowered\FineDiff\Parser\ParserInterface;
 use cogpowered\FineDiff\Granularity\Character;
-use cogpowered\FineDiff\Render\Html;
+use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Parser\Parser;
+use cogpowered\FineDiff\Parser\ParserInterface;
+use cogpowered\FineDiff\Render\Html;
+use cogpowered\FineDiff\Render\RendererInterface;
 
 /**
  * Diff class.
@@ -85,7 +85,6 @@ class Diff
      * Set the granularity level of the parser.
      *
      * @param cogpowered\FineDiff\Granularity\GranularityInterface $granularity
-     * @return void
      */
     public function setGranularity(GranularityInterface $granularity)
     {
@@ -106,7 +105,6 @@ class Diff
      * Set the renderer.
      *
      * @param cogpowered\FineDiff\Render\RendererInterface $renderer
-     * @return void
      */
     public function setRenderer(RendererInterface $renderer)
     {
@@ -127,7 +125,6 @@ class Diff
      * Set the parser.
      *
      * @param cogpowered\FineDiff\Parser\ParserInterface $parser
-     * @return void
      */
     public function setParser(ParserInterface $parser)
     {

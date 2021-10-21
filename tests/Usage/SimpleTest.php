@@ -3,12 +3,12 @@
 namespace cogpowered\FineDiff\Tests\Usage;
 
 use cogpowered\FineDiff\Diff;
-use cogpowered\FineDiff\Render\Text;
-use cogpowered\FineDiff\Render\Html;
 use cogpowered\FineDiff\Granularity\Character;
-use cogpowered\FineDiff\Granularity\Word;
-use cogpowered\FineDiff\Granularity\Sentence;
 use cogpowered\FineDiff\Granularity\Paragraph;
+use cogpowered\FineDiff\Granularity\Sentence;
+use cogpowered\FineDiff\Granularity\Word;
+use cogpowered\FineDiff\Render\Html;
+use cogpowered\FineDiff\Render\Text;
 use PHPUnit\Framework\TestCase;
 
 class SimpleTest extends TestCase
@@ -18,7 +18,7 @@ class SimpleTest extends TestCase
      */
     protected function getFile($file)
     {
-        $txt = file_get_contents(__DIR__.'/Resources/'.$file.'.txt');
+        $txt = file_get_contents(__DIR__ . '/Resources/' . $file . '.txt');
         $txt = explode('==========', $txt);
 
         $from    = trim($txt[0]);
@@ -26,7 +26,7 @@ class SimpleTest extends TestCase
         $opcodes = trim($txt[2]);
         $html    = trim($txt[3]);
 
-        return array($from, $to, $opcodes, $html);
+        return [$from, $to, $opcodes, $html];
     }
 
     public function testInsertCharacterGranularity()
@@ -79,7 +79,6 @@ class SimpleTest extends TestCase
 
         $diff = new Diff(new Sentence());
         $generated_opcodes = $diff->getOpcodes($from, $to);
-
 
         // Generate opcodes
         self::assertEquals($generated_opcodes, $opcodes);

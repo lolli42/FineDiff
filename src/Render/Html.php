@@ -28,12 +28,12 @@ class Html extends Renderer
             $deletion = mb_substr($from, $from_offset, $from_len);
 
             if (strcspn($deletion, " \n\r") === 0) {
-                $deletion = str_replace(array("\n","\r"), array('\n','\r'), $deletion);
+                $deletion = str_replace(["\n", "\r"], ['\n', '\r'], $deletion);
             }
 
-            $html = '<del>'.htmlentities($deletion).'</del>';
+            $html = '<del>' . htmlentities($deletion) . '</del>';
         } else /* if ( $opcode === 'i' ) */ {
-            $html = '<ins>'.htmlentities(mb_substr($from, $from_offset, $from_len)).'</ins>';
+            $html = '<ins>' . htmlentities(mb_substr($from, $from_offset, $from_len)) . '</ins>';
         }
 
         return $html;
