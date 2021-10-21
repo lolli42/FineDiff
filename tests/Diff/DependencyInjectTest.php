@@ -15,6 +15,9 @@ class DependencyInjectTest extends TestCase
 
     public function testGetGranularity()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $character = Mockery::mock('cogpowered\FineDiff\Granularity\Character');
         $character->shouldReceive('justTesting')->once();
 
@@ -26,6 +29,9 @@ class DependencyInjectTest extends TestCase
 
     public function testGetRenderer()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
         $html->shouldReceive('justTesting')->once();
 
@@ -37,6 +43,9 @@ class DependencyInjectTest extends TestCase
 
     public function testRender()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('generate')->andReturn('c12');
 
@@ -46,13 +55,15 @@ class DependencyInjectTest extends TestCase
         $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
         $html->shouldReceive('process')->with('hello', $opcodes)->once();
 
-
         $diff = new Diff(null, $html, $parser);
         $diff->render('hello', 'hello2');
     }
 
     public function testGetParser()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
         $parser->shouldReceive('justTesting')->once();
 
@@ -64,6 +75,9 @@ class DependencyInjectTest extends TestCase
 
     public function testGetOpcodes()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
         $parser->shouldReceive('parse')->with('foobar', 'eggfooba')->once();
 
