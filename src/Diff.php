@@ -18,6 +18,8 @@
 
 namespace cogpowered\FineDiff;
 
+use cogpowered\FineDiff\Exceptions\GranularityCountException;
+use cogpowered\FineDiff\Exceptions\OperationException;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Render\RendererInterface;
 use cogpowered\FineDiff\Parser\ParserInterface;
@@ -31,29 +33,29 @@ use cogpowered\FineDiff\Parser\Parser;
 class Diff
 {
     /**
-     * @var cogpowered\FineDiff\Granularity\GranularityInterface
+     * @var GranularityInterface
      */
     protected $granularity;
 
     /**
-     * @var cogpowered\FineDiff\Render\RendererInterface
+     * @var RendererInterface
      */
     protected $renderer;
 
     /**
-     * @var cogpowered\FineDiff\Parser\ParserInterface
+     * @var ParserInterface
      */
     protected $parser;
 
     /**
      * Instantiate a new instance of Diff.
      *
-     * @param cogpowered\FineDiff\Granularity\GranularityInterface $granularity Level of diff.
-     * @param cogpowered\FineDiff\Render\RenderInterface           $renderer    Diff renderer.
-     * @param cogpowered\FineDiff\Parser\ParserInterface           $parser      Parser used to generate opcodes.
+     * @param GranularityInterface|null $granularity Level of diff.
+     * @param RendererInterface|null $renderer Diff renderer.
+     * @param ParserInterface|null $parser Parser used to generate opcodes.
      *
-     * @throws cogpowered\FineDiff\Exceptions\GranularityCountException
-     * @throws cogpowered\FineDiff\Exceptions\OperationException
+     * @throws GranularityCountException
+     * @throws OperationException
      */
     public function __construct(GranularityInterface $granularity = null, RendererInterface $renderer = null, ParserInterface $parser = null)
     {

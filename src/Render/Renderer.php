@@ -27,7 +27,7 @@ abstract class Renderer implements RendererInterface
      * Covert text based on the provided opcodes.
      *
      * @param string                                              $from_text
-     * @param string|\cogpowered\FineDiff\Parser\OpcodesInterface $opcodes
+     * @param string|OpcodesInterface $opcodes
      *
      * @return string
      */
