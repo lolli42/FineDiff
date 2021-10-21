@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Diff;
+namespace cogpowered\FineDiff\Tests\Diff;
 
 use cogpowered\FineDiff\Diff;
 use PHPUnit\Framework\TestCase;

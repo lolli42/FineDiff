@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Diff;
+namespace cogpowered\FineDiff\Tests\Diff;
 
 use Mockery as m;
 use cogpowered\FineDiff\Diff;

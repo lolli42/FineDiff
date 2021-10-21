@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Parser;
+namespace cogpowered\FineDiff\Tests\Parser;
 
 use Mockery as m;
 use cogpowered\FineDiff\Granularity\Character;

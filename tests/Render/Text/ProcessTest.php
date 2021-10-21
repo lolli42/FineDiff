@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Render\Text;
+namespace cogpowered\FineDiff\Tests\Render\Text;
 
 use Mockery as m;
 use cogpowered\FineDiff\Render\Text;

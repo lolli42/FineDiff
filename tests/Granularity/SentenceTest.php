@@ -1,6 +1,6 @@
 <?php
 
-namespace FineDiffTests\Granularity;
+namespace cogpowered\FineDiff\Tests\Granularity;
 
 use cogpowered\FineDiff\Delimiters;
 use cogpowered\FineDiff\Granularity\Sentence;
