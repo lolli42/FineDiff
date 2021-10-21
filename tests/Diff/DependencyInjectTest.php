@@ -4,6 +4,7 @@ namespace cogpowered\FineDiff\Tests\Diff;
 
 use cogpowered\FineDiff\Diff;
 use cogpowered\FineDiff\Granularity\Character;
+use cogpowered\FineDiff\Granularity\Word;
 use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Render\Html;
@@ -19,30 +20,14 @@ class DependencyInjectTest extends TestCase
 
     public function testGetGranularity()
     {
-        // Dummy to make phpunit not mark this test risky
-        self::assertTrue(true);
-
-        $character = Mockery::mock(Character::class);
-        $character->shouldReceive('justTesting')->once();
-
-        $diff = new Diff($character);
-        $granularity = $diff->getGranularity();
-
-        $granularity->justTesting();
+        $character = new Character();
+        self::assertSame($character, (new Diff($character))->getGranularity());
     }
 
     public function testGetRenderer()
     {
-        // Dummy to make phpunit not mark this test risky
-        self::assertTrue(true);
-
-        $html = Mockery::mock(Html::class);
-        $html->shouldReceive('justTesting')->once();
-
-        $diff = new Diff(null, $html);
-        $renderer = $diff->getRenderer();
-
-        $renderer->justTesting();
+        $html = new Html();
+        self::assertSame($html, (new Diff(null, $html))->getRenderer());
     }
 
     public function testRender()
@@ -65,16 +50,8 @@ class DependencyInjectTest extends TestCase
 
     public function testGetParser()
     {
-        // Dummy to make phpunit not mark this test risky
-        self::assertTrue(true);
-
-        $parser = Mockery::mock(Parser::class);
-        $parser->shouldReceive('justTesting')->once();
-
-        $diff = new Diff(null, null, $parser);
-        $parser = $diff->getParser();
-
-        $parser->justTesting();
+        $parser = new Parser(new Word());
+        self::assertSame($parser, (new Diff(null, null, $parser))->getParser());
     }
 
     public function testGetOpcodes()

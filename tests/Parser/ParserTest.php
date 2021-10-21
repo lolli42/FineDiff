@@ -39,14 +39,12 @@ class ParserTest extends TestCase
         self::assertTrue(is_a($opcodes, OpcodesInterface::class));
     }
 
-    public function testSetOpcodes()
+    public function testSetAndGetOpcodes()
     {
-        $opcodes = Mockery::mock(Opcodes::class);
-        $opcodes->shouldReceive('foo')->andReturn('bar');
-        $this->parser->setOpcodes($opcodes);
-
-        $opcodes = $this->parser->getOpcodes();
-        self::assertEquals($opcodes->foo(), 'bar');
+        $opcodes = new Opcodes();
+        $parser = new Parser(new Character());
+        $parser->setOpcodes($opcodes);
+        self::assertSame($opcodes, $parser->getOpcodes());
     }
 
     public function testParseBadGranularity()
