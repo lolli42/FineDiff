@@ -73,7 +73,7 @@ class Parser implements ParserInterface
         $this->granularity = $granularity;
 
         // Set default opcodes generator
-        $this->opcodes = new Opcodes;
+        $this->opcodes = new Opcodes();
     }
 
     /**
