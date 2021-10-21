@@ -10,14 +10,19 @@ use PHPUnit\Framework\TestCase;
 
 class SentenceTest extends TestCase
 {
-    protected $delimiters = array(
+    /**
+     * @var Sentence
+     */
+    private $character;
+
+    private $delimiters = array(
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
     );
 
     public function setUp(): void
     {
-        $this->character = new Sentence;
+        $this->character = new Sentence();
     }
 
     public function testExtendsAndImplements()

@@ -10,13 +10,18 @@ use PHPUnit\Framework\TestCase;
 
 class ParagraphTest extends TestCase
 {
-    protected $delimiters = array(
+    /**
+     * @var Paragraph
+     */
+    private $character;
+
+    private $delimiters = array(
         Delimiters::PARAGRAPH,
     );
 
     public function setUp(): void
     {
-        $this->character = new Paragraph;
+        $this->character = new Paragraph();
     }
 
     public function testExtendsAndImplements()

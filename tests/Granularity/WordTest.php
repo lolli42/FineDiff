@@ -10,7 +10,12 @@ use PHPUnit\Framework\TestCase;
 
 class WordTest extends TestCase
 {
-    protected $delimiters = array(
+    /**
+     * @var Word
+     */
+    private $character;
+
+    private $delimiters = array(
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
         Delimiters::WORD,
@@ -18,7 +23,7 @@ class WordTest extends TestCase
 
     public function setUp(): void
     {
-        $this->character = new Word;
+        $this->character = new Word();
     }
 
     public function testExtendsAndImplements()

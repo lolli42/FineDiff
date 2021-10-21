@@ -23,7 +23,7 @@ class OpcodesTest extends TestCase
 
     public function testEmptyOpcodes()
     {
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         self::assertEmpty($opcodes->getOpcodes());
     }
 
@@ -32,7 +32,7 @@ class OpcodesTest extends TestCase
         $operation = Mockery::mock(Copy::class);
         $operation->shouldReceive('getOpcode')->once()->andReturn('testing');
 
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         $opcodes->setOpcodes(array($operation));
 
         $opcodes = $opcodes->getOpcodes();
@@ -42,7 +42,7 @@ class OpcodesTest extends TestCase
     public function testNotOperation()
     {
         $this->expectException(OperationException::class);
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         $opcodes->setOpcodes(array('test'));
     }
 
@@ -54,7 +54,7 @@ class OpcodesTest extends TestCase
         $operation_two = Mockery::mock(Copy::class);
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         $opcodes->setOpcodes(array($operation_one, $operation_two));
 
         $opcodes = $opcodes->getOpcodes();
@@ -72,7 +72,7 @@ class OpcodesTest extends TestCase
         $operation_two = Mockery::mock(Copy::class);
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         $opcodes->setOpcodes(array($operation_one, $operation_two));
 
         self::assertEquals($opcodes->generate(), 'c5i2c6d');
@@ -86,7 +86,7 @@ class OpcodesTest extends TestCase
         $operation_two = Mockery::mock(Copy::class);
         $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
 
-        $opcodes = new Opcodes;
+        $opcodes = new Opcodes();
         $opcodes->setOpcodes(array($operation_one, $operation_two));
 
         self::assertEquals((string)$opcodes, 'c5i2c6d');

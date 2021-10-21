@@ -9,9 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class ProcessTest extends TestCase
 {
+    /**
+     * @var Html
+     */
+    private $html;
+
     public function setUp(): void
     {
-        $this->html = new Html;
+        $this->html = new Html();
     }
 
     public function tearDown(): void

@@ -15,9 +15,14 @@ use PHPUnit\Framework\TestCase;
 
 class DefaultsTest extends TestCase
 {
+    /**
+     * @var Diff
+     */
+    private $diff;
+
     public function setUp(): void
     {
-        $this->diff = new Diff;
+        $this->diff = new Diff();
     }
 
     public function testGetGranularity()

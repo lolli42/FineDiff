@@ -33,19 +33,18 @@ class SimpleTest extends TestCase
     {
         list($from, $to, $opcodes, $html) = $this->getFile('character/simple');
 
-        $diff = new Diff(new Character);
+        $diff = new Diff(new Character());
         $generated_opcodes = $diff->getOpcodes($from, $to);
-
 
         // Generate opcodes
         self::assertEquals($generated_opcodes, $opcodes);
 
         // Render to text from opcodes
-        $render = new Text;
+        $render = new Text();
         self::assertEquals( $render->process($from, $generated_opcodes), $to );
 
         // Render to html from opcodes
-        $render = new Html;
+        $render = new Html();
         self::assertEquals( $render->process($from, $generated_opcodes), $html );
 
         // Render
@@ -56,19 +55,18 @@ class SimpleTest extends TestCase
     {
         list($from, $to, $opcodes, $html) = $this->getFile('word/simple');
 
-        $diff = new Diff(new Word);
+        $diff = new Diff(new Word());
         $generated_opcodes = $diff->getOpcodes($from, $to);
-
 
         // Generate opcodes
         self::assertEquals($generated_opcodes, $opcodes);
 
         // Render to text from opcodes
-        $render = new Text;
+        $render = new Text();
         self::assertEquals( $render->process($from, $generated_opcodes), $to );
 
         // Render to html from opcodes
-        $render = new Html;
+        $render = new Html();
         self::assertEquals( $render->process($from, $generated_opcodes), $html );
 
         // Render
@@ -79,7 +77,7 @@ class SimpleTest extends TestCase
     {
         list($from, $to, $opcodes, $html) = $this->getFile('sentence/simple');
 
-        $diff = new Diff(new Sentence);
+        $diff = new Diff(new Sentence());
         $generated_opcodes = $diff->getOpcodes($from, $to);
 
 
@@ -87,11 +85,11 @@ class SimpleTest extends TestCase
         self::assertEquals($generated_opcodes, $opcodes);
 
         // Render to text from opcodes
-        $render = new Text;
+        $render = new Text();
         self::assertEquals( $render->process($from, $generated_opcodes), $to );
 
         // Render to html from opcodes
-        $render = new Html;
+        $render = new Html();
         self::assertEquals( $render->process($from, $generated_opcodes), $html );
 
         // Render
@@ -102,19 +100,18 @@ class SimpleTest extends TestCase
     {
         list($from, $to, $opcodes, $html) = $this->getFile('paragraph/simple');
 
-        $diff = new Diff(new Paragraph);
+        $diff = new Diff(new Paragraph());
         $generated_opcodes = $diff->getOpcodes($from, $to);
-
 
         // Generate opcodes
         self::assertEquals($generated_opcodes, $opcodes);
 
         // Render to text from opcodes
-        $render = new Text;
+        $render = new Text();
         self::assertEquals( $render->process($from, $generated_opcodes), $to );
 
         // Render to html from opcodes
-        $render = new Html;
+        $render = new Html();
         self::assertEquals( $render->process($from, $generated_opcodes), $html );
 
         // Render
