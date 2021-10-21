@@ -148,7 +148,6 @@ class Parser implements ParserInterface
 
         // Actually perform diff
         $diff = $this->diff($from_text, $to_text, $delimiters);
-        $diff = (is_array($diff)) ? $diff : [];
 
         foreach ($diff as $fragment) {
 
@@ -158,9 +157,8 @@ class Parser implements ParserInterface
                     mb_substr($this->from_text, $this->from_offset, $fragment->getFromLen()),
                     $fragment->getText()
                 );
-            }
-            // fuse copy ops whenever possible
-            elseif ($fragment instanceof Copy && $this->last_edit instanceof Copy) {
+            } elseif ($fragment instanceof Copy && $this->last_edit instanceof Copy) {
+                // fuse copy ops whenever possible
                 $this->edits[count($this->edits)-1]->increase($fragment->getFromLen());
                 $this->from_offset += $fragment->getFromLen();
             } else {
