@@ -53,6 +53,9 @@ class ParserTest extends TestCase
 
     public function testParseSetOpcodes()
     {
+        // Dummy to make phpunit not mark this test risky
+        self::assertTrue(true);
+
         $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('setOpcodes')->once();
         $this->parser->setOpcodes($opcodes);
