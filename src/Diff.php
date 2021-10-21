@@ -23,6 +23,7 @@ use cogpowered\FineDiff\Exceptions\OperationException;
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Parser\Opcodes;
+use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Parser\ParserInterface;
 use cogpowered\FineDiff\Render\Html;
@@ -132,7 +133,7 @@ class Diff
      * Returns the opcode diff which can be used for example, to
      * to generate a HTML report of the differences.
      *
-     * @return Opcodes
+     * @return OpcodesInterface
      */
     public function getOpcodes($from_text, $to_text)
     {
