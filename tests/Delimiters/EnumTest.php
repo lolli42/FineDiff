@@ -12,20 +12,20 @@ class EnumTest extends TestCase
         $class   = new \ReflectionClass(Delimiters::class);
         $methods = $class->getMethods(\ReflectionMethod::IS_PRIVATE);
 
-        $this->assertTrue(count($methods) >= 1);
+        self::assertTrue(count($methods) >= 1);
 
         $found = false;
 
         foreach ($methods as $method) {
             if ($method->name === '__construct') {
                 $found = true;
-                $this->assertTrue(true);
+                self::assertTrue(true);
                 break;
             }
         }
 
         if (!$found) {
-            $this->assertTrue(false);
+            self::assertTrue(false);
         }
     }
 }

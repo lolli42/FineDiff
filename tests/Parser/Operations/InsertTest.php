@@ -11,33 +11,33 @@ class InsertTest extends TestCase
     public function testImplementsOperationInterface()
     {
         $replace = new Insert('hello world');
-        $this->assertTrue(is_a($replace, OperationInterface::class));
+        self::assertTrue(is_a($replace, OperationInterface::class));
     }
 
     public function testGetFromLen()
     {
         $insert = new Insert('hello world');
-        $this->assertEquals($insert->getFromLen(), 0);
+        self::assertEquals($insert->getFromLen(), 0);
     }
 
     public function testGetToLen()
     {
         $insert = new Insert('hello world');
-        $this->assertEquals($insert->getToLen(), 11);
+        self::assertEquals($insert->getToLen(), 11);
     }
 
     public function testGetText()
     {
         $insert = new Insert('foobar');
-        $this->assertEquals($insert->getText(), 'foobar');
+        self::assertEquals($insert->getText(), 'foobar');
     }
 
     public function testGetOpcode()
     {
         $insert = new Insert('C');
-        $this->assertEquals($insert->getOpcode(), 'i:C');
+        self::assertEquals($insert->getOpcode(), 'i:C');
 
         $insert = new Insert('blue');
-        $this->assertEquals($insert->getOpcode(), 'i4:blue');
+        self::assertEquals($insert->getOpcode(), 'i4:blue');
     }
 }

@@ -29,7 +29,7 @@ class ProcessTest extends TestCase
     {
         $html = $this->text->process('Hello worlds', 'c5i:2c6d');
 
-        $this->assertEquals($html, 'Hello2 world');
+        self::assertEquals($html, 'Hello2 world');
     }
 
     public function testProcess()
@@ -39,6 +39,6 @@ class ProcessTest extends TestCase
 
         $html = $this->text->process('Hello worlds', $opcodes);
 
-        $this->assertEquals($html, 'Hello2 world');
+        self::assertEquals($html, 'Hello2 world');
     }
 }

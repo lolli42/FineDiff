@@ -22,21 +22,21 @@ class DefaultsTest extends TestCase
 
     public function testGetGranularity()
     {
-        $this->assertTrue(is_a($this->diff->getGranularity(), Character::class));
-        $this->assertTrue(is_a($this->diff->getGranularity(), Granularity::class));
-        $this->assertTrue(is_a($this->diff->getGranularity(), GranularityInterface::class));
+        self::assertTrue(is_a($this->diff->getGranularity(), Character::class));
+        self::assertTrue(is_a($this->diff->getGranularity(), Granularity::class));
+        self::assertTrue(is_a($this->diff->getGranularity(), GranularityInterface::class));
     }
 
     public function testGetRenderer()
     {
-        $this->assertTrue(is_a($this->diff->getRenderer(), Html::class));
-        $this->assertTrue(is_a($this->diff->getRenderer(), Renderer::class));
-        $this->assertTrue(is_a($this->diff->getRenderer(), RendererInterface::class));
+        self::assertTrue(is_a($this->diff->getRenderer(), Html::class));
+        self::assertTrue(is_a($this->diff->getRenderer(), Renderer::class));
+        self::assertTrue(is_a($this->diff->getRenderer(), RendererInterface::class));
     }
 
     public function testGetParser()
     {
-        $this->assertTrue(is_a($this->diff->getParser(), Parser::class));
-        $this->assertTrue(is_a($this->diff->getParser(), ParserInterface::class));
+        self::assertTrue(is_a($this->diff->getParser(), Parser::class));
+        self::assertTrue(is_a($this->diff->getParser(), ParserInterface::class));
     }
 }

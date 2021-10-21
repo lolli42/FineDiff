@@ -23,7 +23,7 @@ class SetTest extends TestCase
 
     public function testSetParser()
     {
-        $this->assertFalse( method_exists($this->diff->getParser(), 'fooBar') );
+        self::assertFalse( method_exists($this->diff->getParser(), 'fooBar') );
 
         $parser = Mockery::mock(Parser::class);
         $parser->shouldReceive('fooBar')->once();
@@ -36,7 +36,7 @@ class SetTest extends TestCase
 
     public function testSetRenderer()
     {
-        $this->assertFalse( method_exists($this->diff->getRenderer(), 'fooBar') );
+        self::assertFalse( method_exists($this->diff->getRenderer(), 'fooBar') );
 
         $html = Mockery::mock(Html::class);
         $html->shouldReceive('fooBar')->once();
@@ -49,7 +49,7 @@ class SetTest extends TestCase
 
     public function testSetGranularity()
     {
-        $this->assertFalse( method_exists($this->diff->getGranularity(), 'fooBar') );
+        self::assertFalse( method_exists($this->diff->getGranularity(), 'fooBar') );
 
         $granularity = Mockery::mock(Word::class);
         $granularity->shouldReceive('fooBar')->once();
