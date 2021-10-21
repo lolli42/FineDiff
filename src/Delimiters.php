@@ -25,13 +25,15 @@ namespace cogpowered\FineDiff;
  */
 abstract class Delimiters
 {
-    const PARAGRAPH = "\n\r";
-    const SENTENCE  = ".\n\r";
-    const WORD      = " \t.\n\r";
-    const CHARACTER = "";
+    public const PARAGRAPH = "\n\r";
+    public const SENTENCE  = ".\n\r";
+    public const WORD      = " \t.\n\r";
+    public const CHARACTER = "";
 
     /**
      * Do not allow this class to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 }

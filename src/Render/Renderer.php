@@ -48,7 +48,6 @@ abstract class Renderer implements RendererInterface
         $opcodes_offset = 0;
 
         while ($opcodes_offset < $opcodes_len) {
-
             $opcode = mb_substr($opcodes, $opcodes_offset, 1);
             $opcodes_offset++;
             $n = intval(mb_substr($opcodes, $opcodes_offset));
@@ -63,7 +62,7 @@ abstract class Renderer implements RendererInterface
                 // copy n characters from source
                 $data = $this->callback('c', $from_text, $from_offset, $n);
                 $from_offset += $n;
-            } else if ($opcode === 'd') {
+            } elseif ($opcode === 'd') {
                 // delete n characters from source
                 $data = $this->callback('d', $from_text, $from_offset, $n);
                 $from_offset += $n;
