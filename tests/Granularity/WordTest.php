@@ -14,7 +14,7 @@ class WordTest extends TestCase
         Delimiters::WORD,
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->character = new Word;
     }

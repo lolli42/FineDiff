@@ -13,7 +13,7 @@ class SentenceTest extends TestCase
         Delimiters::SENTENCE,
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->character = new Sentence;
     }

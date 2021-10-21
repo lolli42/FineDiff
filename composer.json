@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "mockery/mockery": "*",
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^8"
     },
     "autoload": {
         "psr-0": { "cogpowered\\FineDiff": "src/" }

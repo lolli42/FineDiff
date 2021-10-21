@@ -8,12 +8,12 @@ use PHPUnit\Framework\TestCase;
 
 class ProcessTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->text = new Text;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
