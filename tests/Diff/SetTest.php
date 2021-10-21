@@ -2,11 +2,11 @@
 
 namespace FineDiffTests\Diff;
 
-use FineDiffTests\BaseTestCase;
 use Mockery as m;
 use cogpowered\FineDiff\Diff;
+use PHPUnit\Framework\TestCase;
 
-class SetTest extends BaseTestCase
+class SetTest extends TestCase
 {
     public function setUp()
     {

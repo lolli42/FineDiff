@@ -2,10 +2,10 @@
 
 namespace FineDiffTests\Parser\Operations;
 
-use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Parser\Operations\Replace;
+use PHPUnit\Framework\TestCase;
 
-class ReplaceTest extends BaseTestCase
+class ReplaceTest extends TestCase
 {
     public function testImplementsOperationInterface()
     {

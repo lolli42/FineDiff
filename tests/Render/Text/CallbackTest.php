@@ -2,10 +2,10 @@
 
 namespace FineDiffTests\Render\Text;
 
-use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Render\Text;
+use PHPUnit\Framework\TestCase;
 
-class CallbackTest extends BaseTestCase
+class CallbackTest extends TestCase
 {
     public function setUp()
     {

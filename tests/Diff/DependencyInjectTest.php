@@ -2,11 +2,11 @@
 
 namespace FineDiffTests\Diff;
 
-use FineDiffTests\BaseTestCase;
 use Mockery as m;
 use cogpowered\FineDiff\Diff;
+use PHPUnit\Framework\TestCase;
 
-class DependencyInjectTest extends BaseTestCase
+class DependencyInjectTest extends TestCase
 {
     public function tearDown()
     {

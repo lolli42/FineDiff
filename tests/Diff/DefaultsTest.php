@@ -2,10 +2,10 @@
 
 namespace FineDiffTests\Diff;
 
-use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Diff;
+use PHPUnit\Framework\TestCase;
 
-class DefaultsTest extends BaseTestCase
+class DefaultsTest extends TestCase
 {
     public function setUp()
     {
