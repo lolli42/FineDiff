@@ -202,6 +202,8 @@ class Parser implements ParserInterface
 
         $jobs              = array(array(0, $from_text_len, 0, $to_text_len));
         $cached_array_keys = array();
+        $best_from_start = 0;
+        $best_to_start = 0;
 
 
         while ($job = array_pop($jobs)) {
@@ -337,6 +339,8 @@ class Parser implements ParserInterface
     {
         $result = array();
         $jobs   = array(array(0, mb_strlen($from_text), 0, mb_strlen($to_text)));
+        $from_copy_start = 0;
+        $to_copy_start = 0;
 
         while ($job = array_pop($jobs)) {
 
