@@ -1,39 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
+    backupGlobals="false"
+    backupStaticAttributes="false"
     cacheResult="false"
     colors="true"
+    convertDeprecationsToExceptions="true"
+    convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
+    processIsolation="false"
     stopOnError="false"
     stopOnFailure="false"
     stopOnIncomplete="false"
-    bootstrap="vendor/autoload.php">
-
+    stopOnSkipped="false"
+>
     <testsuites>
-        <testsuite name="Delimiters">
-            <directory suffix=".php">tests/Delimiters</directory>
-        </testsuite>
-        <testsuite name="Diff">
-            <directory suffix=".php">tests/Diff</directory>
-        </testsuite>
-        <testsuite name="Granularity">
-            <directory suffix=".php">tests/Granularity</directory>
-        </testsuite>
-        <testsuite name="Parser">
-            <directory suffix=".php">tests/Parser</directory>
-        </testsuite>
-        <testsuite name="Render">
-            <directory suffix=".php">tests/Render</directory>
-        </testsuite>
-        <testsuite name="Usage">
-            <directory suffix=".php">tests/Usage</directory>
+        <testsuite name="Unit">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <blacklist>
-            <directory suffix=".php">PEAR_INSTALL_DIR</directory>
-            <directory suffix=".php">PHP_LIBDIR</directory>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
-    </filter>
 </phpunit>
