@@ -18,7 +18,7 @@ class OpcodesTest extends TestCase
 
     public function testInstanceOf()
     {
-        self::assertTrue(is_a(new Opcodes, OpcodesInterface::class));
+        self::assertTrue(is_a(new Opcodes(), OpcodesInterface::class));
     }
 
     public function testEmptyOpcodes()
