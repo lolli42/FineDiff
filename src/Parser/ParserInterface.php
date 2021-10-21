@@ -25,8 +25,6 @@ interface ParserInterface
 {
     /**
      * Creates an instance.
-     *
-     * @param GranularityInterface
      */
     public function __construct(GranularityInterface $granularity);
 
@@ -41,8 +39,6 @@ interface ParserInterface
 
     /**
      * Set the granularity that the parser is working with.
-     *
-     * @param $granularity GranularityInterface
      */
     public function setGranularity(GranularityInterface $granularity);
 
@@ -55,8 +51,6 @@ interface ParserInterface
 
     /**
      * Set the opcodes object used to store all the opcodes for this parse.
-     *
-     * @param OpcodesInterface $opcodes.
      */
     public function setOpcodes(OpcodesInterface $opcodes);
 
