@@ -64,7 +64,7 @@ class Insert implements OperationInterface
     {
         $to_len = mb_strlen($this->text);
 
-        if ( $to_len === 1 ) {
+        if ($to_len === 1) {
             return "i:{$this->text}";
         }
 

@@ -24,8 +24,7 @@ class Html extends Renderer
     {
         if ($opcode === 'c') {
             $html = htmlentities(mb_substr($from, $from_offset, $from_len));
-        } else if ($opcode === 'd') {
-
+        } elseif ($opcode === 'd') {
             $deletion = mb_substr($from, $from_offset, $from_len);
 
             if (strcspn($deletion, " \n\r") === 0) {
@@ -33,7 +32,6 @@ class Html extends Renderer
             }
 
             $html = '<del>'.htmlentities($deletion).'</del>';
-
         } else /* if ( $opcode === 'i' ) */ {
             $html = '<ins>'.htmlentities(mb_substr($from, $from_offset, $from_len)).'</ins>';
         }
