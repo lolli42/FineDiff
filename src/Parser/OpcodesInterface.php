@@ -18,6 +18,8 @@
 
 namespace cogpowered\FineDiff\Parser;
 
+use cogpowered\FineDiff\Exceptions\OperationException;
+
 interface OpcodesInterface
 {
     /**
@@ -30,8 +32,8 @@ interface OpcodesInterface
     /**
      * Set the opcodes for this parse.
      *
-     * @param array $opcodes Elements must be an instance of cogpowered\FineDiff\Parser\Operations\OperationInterface.
-     * @throws cogpowered\FineDiff\Exceptions\OperationException
+     * @param array $opcodes Elements must be an instance of OperationInterface.
+     * @throws OperationException
      * @return void
      */
     public function setOpcodes(array $opcodes);

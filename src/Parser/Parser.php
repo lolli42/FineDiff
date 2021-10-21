@@ -23,6 +23,7 @@ use cogpowered\FineDiff\Exceptions\GranularityCountException;
 use cogpowered\FineDiff\Parser\Operations\Copy;
 use cogpowered\FineDiff\Parser\Operations\Delete;
 use cogpowered\FineDiff\Parser\Operations\Insert;
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use cogpowered\FineDiff\Parser\Operations\Replace;
 
 /**
@@ -31,12 +32,12 @@ use cogpowered\FineDiff\Parser\Operations\Replace;
 class Parser implements ParserInterface
 {
     /**
-     * @var cogpowered\FineDiff\GranularityInterface
+     * @var GranularityInterface
      */
     protected $granularity;
 
     /**
-     * @var cogpowered\FineDiff\Parser\OpcodesInterface
+     * @var OpcodesInterface
      */
     protected $opcodes;
 
@@ -51,7 +52,7 @@ class Parser implements ParserInterface
     protected $from_offset = 0;
 
     /**
-     * @var cogpowered\FineDiff\Operations\OperationInterface
+     * @var OperationInterface
      */
     protected $last_edit;
 
@@ -311,7 +312,7 @@ class Parser implements ParserInterface
                 $from_base_fragment_index += mb_strlen($from_base_fragment);
 
                 // If match is larger than half segment size, no point trying to find better
-                // TODO: Really?
+                // @todo: Really?
                 if ($best_copy_length >= $from_segment_length / 2) {
                     break;
                 }
