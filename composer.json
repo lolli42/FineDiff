@@ -23,7 +23,7 @@
         "phpunit/phpunit": "^8"
     },
     "autoload": {
-        "psr-0": { "cogpowered\\FineDiff": "src/" }
+        "psr-4": { "cogpowered\\FineDiff\\": "src/" }
     },
     "autoload-dev": {
         "psr-4": { "FineDiffTests\\": "tests/"}
