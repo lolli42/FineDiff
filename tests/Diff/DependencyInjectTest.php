@@ -2,6 +2,10 @@
 
 namespace cogpowered\FineDiff\Tests\Diff;
 
+use cogpowered\FineDiff\Granularity\Character;
+use cogpowered\FineDiff\Parser\Opcodes;
+use cogpowered\FineDiff\Parser\Parser;
+use cogpowered\FineDiff\Render\Html;
 use Mockery;
 use cogpowered\FineDiff\Diff;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +22,7 @@ class DependencyInjectTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $character = Mockery::mock('cogpowered\FineDiff\Granularity\Character');
+        $character = Mockery::mock(Character::class);
         $character->shouldReceive('justTesting')->once();
 
         $diff = new Diff($character);
@@ -32,7 +36,7 @@ class DependencyInjectTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
+        $html = Mockery::mock(Html::class);
         $html->shouldReceive('justTesting')->once();
 
         $diff = new Diff(null, $html);
@@ -46,13 +50,13 @@ class DependencyInjectTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock(Opcodes::class);
         $opcodes->shouldReceive('generate')->andReturn('c12');
 
-        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock(Parser::class);
         $parser->shouldReceive('parse')->andReturn($opcodes);
 
-        $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
+        $html = Mockery::mock(Html::class);
         $html->shouldReceive('process')->with('hello', $opcodes)->once();
 
         $diff = new Diff(null, $html, $parser);
@@ -64,7 +68,7 @@ class DependencyInjectTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock(Parser::class);
         $parser->shouldReceive('justTesting')->once();
 
         $diff = new Diff(null, null, $parser);
@@ -78,7 +82,7 @@ class DependencyInjectTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock(Parser::class);
         $parser->shouldReceive('parse')->with('foobar', 'eggfooba')->once();
 
         $diff = new Diff(null, null, $parser);

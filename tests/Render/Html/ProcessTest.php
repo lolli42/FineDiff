@@ -2,6 +2,7 @@
 
 namespace cogpowered\FineDiff\Tests\Render\Html;
 
+use cogpowered\FineDiff\Parser\Opcodes;
 use Mockery;
 use cogpowered\FineDiff\Render\Html;
 use PHPUnit\Framework\TestCase;
@@ -20,7 +21,7 @@ class ProcessTest extends TestCase
 
     public function testProcess()
     {
-        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock(Opcodes::class);
         $opcodes->shouldReceive('generate')->andReturn('c5i:2c6d')->once();
 
         $html = $this->html->process('Hello worlds', $opcodes);
