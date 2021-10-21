@@ -11,9 +11,14 @@ use PHPUnit\Framework\TestCase;
 
 class SetTest extends TestCase
 {
+    /**
+     * @var Diff
+     */
+    private $diff;
+
     public function setUp(): void
     {
-        $this->diff = new Diff;
+        $this->diff = new Diff();
     }
 
     public function tearDown(): void
