@@ -3,12 +3,12 @@
 namespace cogpowered\FineDiff\Tests\Parser;
 
 use cogpowered\FineDiff\Exceptions\GranularityCountException;
+use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
+use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Parser\ParserInterface;
 use Mockery;
-use cogpowered\FineDiff\Granularity\Character;
-use cogpowered\FineDiff\Parser\Parser;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase

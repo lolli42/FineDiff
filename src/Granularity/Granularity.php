@@ -26,7 +26,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @var array Extending granularities should override this.
      */
-    protected $delimiters = array();
+    protected $delimiters = [];
 
     /**
      * @inheritdoc

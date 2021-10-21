@@ -2,11 +2,11 @@
 
 namespace cogpowered\FineDiff\Tests\Diff;
 
+use cogpowered\FineDiff\Diff;
 use cogpowered\FineDiff\Granularity\Word;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Render\Html;
 use Mockery;
-use cogpowered\FineDiff\Diff;
 use PHPUnit\Framework\TestCase;
 
 class SetTest extends TestCase

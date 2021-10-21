@@ -15,10 +15,10 @@ class SentenceTest extends TestCase
      */
     private $character;
 
-    private $delimiters = array(
+    private $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
-    );
+    ];
 
     public function setUp(): void
     {

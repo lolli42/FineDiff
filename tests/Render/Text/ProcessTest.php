@@ -3,8 +3,8 @@
 namespace cogpowered\FineDiff\Tests\Render\Text;
 
 use cogpowered\FineDiff\Parser\Opcodes;
-use Mockery;
 use cogpowered\FineDiff\Render\Text;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class ProcessTest extends TestCase

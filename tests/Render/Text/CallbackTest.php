@@ -31,7 +31,7 @@ class CallbackTest extends TestCase
         $output = $this->text->callback('d', 'elephant', 0, 100);
         self::assertEquals($output, '');
 
-        $output = $this->text->callback('d', "elephant", 3, 4);
+        $output = $this->text->callback('d', 'elephant', 3, 4);
         self::assertEquals($output, '');
     }
 

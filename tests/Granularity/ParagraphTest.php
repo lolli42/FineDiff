@@ -15,9 +15,9 @@ class ParagraphTest extends TestCase
      */
     private $character;
 
-    private $delimiters = array(
+    private $delimiters = [
         Delimiters::PARAGRAPH,
-    );
+    ];
 
     public function setUp(): void
     {

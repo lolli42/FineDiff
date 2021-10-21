@@ -15,12 +15,12 @@ class CharacterTest extends TestCase
      */
     private $character;
 
-    private $delimiters = array(
+    private $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
         Delimiters::WORD,
         Delimiters::CHARACTER,
-    );
+    ];
 
     public function setUp(): void
     {
@@ -42,7 +42,7 @@ class CharacterTest extends TestCase
 
     public function testSetDelimiters()
     {
-        $arr = array('one', 'two');
+        $arr = ['one', 'two'];
         $this->character->setDelimiters($arr);
         self::assertEquals($this->character->getDelimiters(), $arr);
     }

@@ -31,7 +31,7 @@ class CallbackTest extends TestCase
         $output = $this->html->callback('d', 'el', 0, 2);
         self::assertEquals($output, '<del>el</del>');
 
-        $output = $this->html->callback('d', "e&l", 0, 100);
+        $output = $this->html->callback('d', 'e&l', 0, 100);
         self::assertEquals($output, '<del>e&amp;l</del>');
     }
 
@@ -40,7 +40,7 @@ class CallbackTest extends TestCase
         $output = $this->html->callback('i', 'monkey', 0, 6);
         self::assertEquals($output, '<ins>monkey</ins>');
 
-        $output = $this->html->callback('i', "mon&key", 0, 100);
+        $output = $this->html->callback('i', 'mon&key', 0, 100);
         self::assertEquals($output, '<ins>mon&amp;key</ins>');
     }
 }

@@ -31,7 +31,6 @@ interface GranularityInterface extends \ArrayAccess, \Countable
      * Set the delimiters that make up the granularity.
      *
      * @param array $delimiters
-     * @return void
      */
     public function setDelimiters(array $delimiters);
 }
