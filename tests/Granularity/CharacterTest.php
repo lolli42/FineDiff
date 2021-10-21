@@ -56,7 +56,6 @@ class CharacterTest extends TestCase
     {
         // Exists
         for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-
             if ($i !== count($this->delimiters)) {
                 self::assertTrue(isset($this->character[$i]));
             } else {
@@ -66,7 +65,6 @@ class CharacterTest extends TestCase
 
         // Get
         for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-
             if ($i !== count($this->delimiters)) {
                 self::assertEquals($this->character[$i], $this->delimiters[$i]);
             } else {
@@ -76,7 +74,6 @@ class CharacterTest extends TestCase
 
         // Set
         for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-
             $rand = rand(0, 1000);
 
             $this->character[$i] = $rand;

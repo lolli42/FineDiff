@@ -41,14 +41,14 @@ class SimpleTest extends TestCase
 
         // Render to text from opcodes
         $render = new Text();
-        self::assertEquals( $render->process($from, $generated_opcodes), $to );
+        self::assertEquals($render->process($from, $generated_opcodes), $to);
 
         // Render to html from opcodes
         $render = new Html();
-        self::assertEquals( $render->process($from, $generated_opcodes), $html );
+        self::assertEquals($render->process($from, $generated_opcodes), $html);
 
         // Render
-        self::assertEquals( $diff->render($from, $to), $html );
+        self::assertEquals($diff->render($from, $to), $html);
     }
 
     public function testInsertWordGranularity()
@@ -63,14 +63,14 @@ class SimpleTest extends TestCase
 
         // Render to text from opcodes
         $render = new Text();
-        self::assertEquals( $render->process($from, $generated_opcodes), $to );
+        self::assertEquals($render->process($from, $generated_opcodes), $to);
 
         // Render to html from opcodes
         $render = new Html();
-        self::assertEquals( $render->process($from, $generated_opcodes), $html );
+        self::assertEquals($render->process($from, $generated_opcodes), $html);
 
         // Render
-        self::assertEquals( $diff->render($from, $to), $html );
+        self::assertEquals($diff->render($from, $to), $html);
     }
 
     public function testInsertSentenceGranularity()
@@ -86,14 +86,14 @@ class SimpleTest extends TestCase
 
         // Render to text from opcodes
         $render = new Text();
-        self::assertEquals( $render->process($from, $generated_opcodes), $to );
+        self::assertEquals($render->process($from, $generated_opcodes), $to);
 
         // Render to html from opcodes
         $render = new Html();
-        self::assertEquals( $render->process($from, $generated_opcodes), $html );
+        self::assertEquals($render->process($from, $generated_opcodes), $html);
 
         // Render
-        self::assertEquals( $diff->render($from, $to), $html );
+        self::assertEquals($diff->render($from, $to), $html);
     }
 
     public function testInsertParagraphGranularity()
@@ -108,13 +108,13 @@ class SimpleTest extends TestCase
 
         // Render to text from opcodes
         $render = new Text();
-        self::assertEquals( $render->process($from, $generated_opcodes), $to );
+        self::assertEquals($render->process($from, $generated_opcodes), $to);
 
         // Render to html from opcodes
         $render = new Html();
-        self::assertEquals( $render->process($from, $generated_opcodes), $html );
+        self::assertEquals($render->process($from, $generated_opcodes), $html);
 
         // Render
-        self::assertEquals( $diff->render($from, $to), $html );
+        self::assertEquals($diff->render($from, $to), $html);
     }
 }

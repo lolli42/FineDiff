@@ -6,7 +6,7 @@ use cogpowered\FineDiff\Parser\Operations\Copy;
 use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use PHPUnit\Framework\TestCase;
 
-class CopyTest extends  TestCase
+class CopyTest extends TestCase
 {
     public function testImplementsOperationInterface()
     {
