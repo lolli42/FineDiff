@@ -28,11 +28,18 @@ jobs:
         run: composer validate
 
       - name: Lint PHP
-        run: |
-          find src/ tests/ -name '*.php' -print0 | xargs -0 -n1 -P4 php -dxdebug.mode=off -l >/dev/null
+        run: find src/ tests/ -name '*.php' -print0 | xargs -0 -n1 -P4 php -dxdebug.mode=off -l >/dev/null
 
       - name: Install dependencies
         run: composer update
+
+      - name: CGL check src/
+        if: ${{ matrix.php == '7.2' }}
+        run: vendor/bin/php-cs-fixer fix --dry-run --using-cache no src/
+
+      - name: CGL check tests/
+        if: ${{ matrix.php == '7.2' }}
+        run: vendor/bin/php-cs-fixer fix --dry-run --using-cache no tests/
 
       - name: Run test suite
         run: vendor/bin/phpunit
