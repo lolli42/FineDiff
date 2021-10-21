@@ -426,7 +426,6 @@ class Parser implements ParserInterface
     *
     * @param string $text
     * @param string $delimiters
-    * @param array
     */
     protected function extractFragments($text, $delimiters)
     {
