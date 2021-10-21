@@ -33,13 +33,9 @@ jobs:
       - name: Install dependencies
         run: composer update
 
-      - name: CGL check src/
+      - name: CGL check
         if: ${{ matrix.php == '7.2' }}
-        run: vendor/bin/php-cs-fixer fix --dry-run --using-cache no src/
-
-      - name: CGL check tests/
-        if: ${{ matrix.php == '7.2' }}
-        run: vendor/bin/php-cs-fixer fix --dry-run --using-cache no tests/
+        run: vendor/bin/php-cs-fixer fix --dry-run
 
       - name: Phpstan
         if: ${{ matrix.php <= '8.0' }}
