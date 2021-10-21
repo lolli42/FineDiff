@@ -2,10 +2,10 @@
 
 namespace FineDiffTests\Render\Html;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Render\Html;
 
-class CallbackTest extends PHPUnit_Framework_TestCase
+class CallbackTest extends BaseTestCase
 {
     public function setUp()
     {

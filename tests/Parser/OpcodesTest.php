@@ -2,11 +2,11 @@
 
 namespace FineDiffTests\Parser;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use Mockery as m;
 use cogpowered\FineDiff\Parser\Opcodes;
 
-class OpcodesTest extends PHPUnit_Framework_TestCase
+class OpcodesTest extends BaseTestCase
 {
     public function tearDown()
     {

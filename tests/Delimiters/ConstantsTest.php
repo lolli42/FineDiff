@@ -2,10 +2,10 @@
 
 namespace FineDiffTests\Delimiters;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Delimiters;
 
-class ConstantsTest extends PHPUnit_Framework_TestCase
+class ConstantsTest extends BaseTestCase
 {
     public function testParagraphConstant()
     {

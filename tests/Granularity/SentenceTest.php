@@ -2,11 +2,11 @@
 
 namespace FineDiffTests\Granularity;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use cogpowered\FineDiff\Delimiters;
 use cogpowered\FineDiff\Granularity\Sentence;
 
-class SentenceTest extends PHPUnit_Framework_TestCase
+class SentenceTest extends BaseTestCase
 {
     protected $delimiters = array(
         Delimiters::PARAGRAPH,

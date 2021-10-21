@@ -2,9 +2,9 @@
 
 namespace FineDiffTests\Usage;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 
-abstract class Base extends PHPUnit_Framework_TestCase
+abstract class Base extends BaseTestCase
 {
     protected function getFile($file)
     {
