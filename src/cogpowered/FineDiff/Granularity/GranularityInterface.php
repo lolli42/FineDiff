@@ -18,13 +18,8 @@
 
 namespace cogpowered\FineDiff\Granularity;
 
-interface GranularityInterface
+interface GranularityInterface extends \ArrayAccess, \Countable
 {
-    public function offsetExists($offset);
-    public function offsetGet($offset);
-    public function offsetSet($offset, $value);
-    public function offsetUnset($offset);
-
     /**
      * Get the delimiters that make up the granularity.
      *
