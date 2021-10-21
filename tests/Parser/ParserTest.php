@@ -2,7 +2,7 @@
 
 namespace cogpowered\FineDiff\Tests\Parser;
 
-use Mockery as m;
+use Mockery;
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Parser\Parser;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +17,7 @@ class ParserTest extends TestCase
 
     public function tearDown(): void
     {
-        m::close();
+        Mockery::close();
     }
 
     public function testInstanceOf()
@@ -33,7 +33,7 @@ class ParserTest extends TestCase
 
     public function testSetOpcodes()
     {
-        $opcodes = m::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('foo')->andReturn('bar');
         $this->parser->setOpcodes($opcodes);
 
@@ -44,7 +44,7 @@ class ParserTest extends TestCase
     public function testParseBadGranularity()
     {
         $this->expectException(\cogpowered\FineDiff\Exceptions\GranularityCountException::class);
-        $granularity = m::mock('cogpowered\FineDiff\Granularity\Character');
+        $granularity = Mockery::mock('cogpowered\FineDiff\Granularity\Character');
         $granularity->shouldReceive('count')->andReturn(0);
         $parser = new Parser($granularity);
 
@@ -53,7 +53,7 @@ class ParserTest extends TestCase
 
     public function testParseSetOpcodes()
     {
-        $opcodes = m::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('setOpcodes')->once();
         $this->parser->setOpcodes($opcodes);
 

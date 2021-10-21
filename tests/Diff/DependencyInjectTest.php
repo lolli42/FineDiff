@@ -2,7 +2,7 @@
 
 namespace cogpowered\FineDiff\Tests\Diff;
 
-use Mockery as m;
+use Mockery;
 use cogpowered\FineDiff\Diff;
 use PHPUnit\Framework\TestCase;
 
@@ -10,12 +10,12 @@ class DependencyInjectTest extends TestCase
 {
     public function tearDown(): void
     {
-        m::close();
+        Mockery::close();
     }
 
     public function testGetGranularity()
     {
-        $character = m::mock('cogpowered\FineDiff\Granularity\Character');
+        $character = Mockery::mock('cogpowered\FineDiff\Granularity\Character');
         $character->shouldReceive('justTesting')->once();
 
         $diff = new Diff($character);
@@ -26,7 +26,7 @@ class DependencyInjectTest extends TestCase
 
     public function testGetRenderer()
     {
-        $html = m::mock('cogpowered\FineDiff\Render\Html');
+        $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
         $html->shouldReceive('justTesting')->once();
 
         $diff = new Diff(null, $html);
@@ -37,13 +37,13 @@ class DependencyInjectTest extends TestCase
 
     public function testRender()
     {
-        $opcodes = m::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('generate')->andReturn('c12');
 
-        $parser = m::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
         $parser->shouldReceive('parse')->andReturn($opcodes);
 
-        $html = m::mock('cogpowered\FineDiff\Render\Html');
+        $html = Mockery::mock('cogpowered\FineDiff\Render\Html');
         $html->shouldReceive('process')->with('hello', $opcodes)->once();
 
 
@@ -53,7 +53,7 @@ class DependencyInjectTest extends TestCase
 
     public function testGetParser()
     {
-        $parser = m::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
         $parser->shouldReceive('justTesting')->once();
 
         $diff = new Diff(null, null, $parser);
@@ -64,7 +64,7 @@ class DependencyInjectTest extends TestCase
 
     public function testGetOpcodes()
     {
-        $parser = m::mock('cogpowered\FineDiff\Parser\Parser');
+        $parser = Mockery::mock('cogpowered\FineDiff\Parser\Parser');
         $parser->shouldReceive('parse')->with('foobar', 'eggfooba')->once();
 
         $diff = new Diff(null, null, $parser);

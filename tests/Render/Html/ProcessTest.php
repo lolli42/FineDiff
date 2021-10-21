@@ -2,7 +2,7 @@
 
 namespace cogpowered\FineDiff\Tests\Render\Html;
 
-use Mockery as m;
+use Mockery;
 use cogpowered\FineDiff\Render\Html;
 use PHPUnit\Framework\TestCase;
 
@@ -15,12 +15,12 @@ class ProcessTest extends TestCase
 
     public function tearDown(): void
     {
-        m::close();
+        Mockery::close();
     }
 
     public function testProcess()
     {
-        $opcodes = m::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
         $opcodes->shouldReceive('generate')->andReturn('c5i:2c6d')->once();
 
         $html = $this->html->process('Hello worlds', $opcodes);
