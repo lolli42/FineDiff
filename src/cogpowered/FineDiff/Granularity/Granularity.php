@@ -21,7 +21,7 @@ namespace cogpowered\FineDiff\Granularity;
 /**
  * Granularities should extend this class.
  */
-abstract class Granularity implements GranularityInterface, \ArrayAccess, \Countable
+abstract class Granularity implements GranularityInterface
 {
     /**
      * @var array Extending granularities should override this.
