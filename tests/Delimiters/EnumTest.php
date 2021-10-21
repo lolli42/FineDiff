@@ -2,13 +2,14 @@
 
 namespace cogpowered\FineDiff\Tests\Delimiters;
 
+use cogpowered\FineDiff\Delimiters;
 use PHPUnit\Framework\TestCase;
 
 class EnumTest extends TestCase
 {
     public function testCantInstantiate()
     {
-        $class   = new \ReflectionClass('cogpowered\FineDiff\Delimiters');
+        $class   = new \ReflectionClass(Delimiters::class);
         $methods = $class->getMethods(\ReflectionMethod::IS_PRIVATE);
 
         $this->assertTrue(count($methods) >= 1);

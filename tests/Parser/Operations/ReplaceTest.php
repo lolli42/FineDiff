@@ -2,6 +2,7 @@
 
 namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use cogpowered\FineDiff\Parser\Operations\Replace;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +11,7 @@ class ReplaceTest extends TestCase
     public function testImplementsOperationInterface()
     {
         $replace = new Replace('hello', 'world');
-        $this->assertTrue(is_a($replace, 'cogpowered\FineDiff\Parser\Operations\OperationInterface'));
+        $this->assertTrue(is_a($replace, OperationInterface::class));
     }
 
     public function testGetFromLen()

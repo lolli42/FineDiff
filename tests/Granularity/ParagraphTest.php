@@ -3,6 +3,8 @@
 namespace cogpowered\FineDiff\Tests\Granularity;
 
 use cogpowered\FineDiff\Delimiters;
+use cogpowered\FineDiff\Granularity\Granularity;
+use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Granularity\Paragraph;
 use PHPUnit\Framework\TestCase;
 
@@ -19,10 +21,10 @@ class ParagraphTest extends TestCase
 
     public function testExtendsAndImplements()
     {
-        $this->assertTrue(is_a($this->character, 'cogpowered\FineDiff\Granularity\Granularity'));
-        $this->assertTrue(is_a($this->character, 'cogpowered\FineDiff\Granularity\GranularityInterface'));
-        $this->assertTrue(is_a($this->character, 'ArrayAccess'));
-        $this->assertTrue(is_a($this->character, 'Countable'));
+        $this->assertTrue(is_a($this->character, Granularity::class));
+        $this->assertTrue(is_a($this->character, GranularityInterface::class));
+        $this->assertTrue(is_a($this->character, \ArrayAccess::class));
+        $this->assertTrue(is_a($this->character, \Countable::class));
     }
 
     public function testGetDelimiters()

@@ -2,6 +2,10 @@
 
 namespace cogpowered\FineDiff\Tests\Parser;
 
+use cogpowered\FineDiff\Exceptions\GranularityCountException;
+use cogpowered\FineDiff\Parser\Opcodes;
+use cogpowered\FineDiff\Parser\OpcodesInterface;
+use cogpowered\FineDiff\Parser\ParserInterface;
 use Mockery;
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Parser\Parser;
@@ -22,18 +26,18 @@ class ParserTest extends TestCase
 
     public function testInstanceOf()
     {
-        $this->assertTrue(is_a($this->parser, 'cogpowered\FineDiff\Parser\ParserInterface'));
+        $this->assertTrue(is_a($this->parser, ParserInterface::class));
     }
 
     public function testDefaultOpcodes()
     {
         $opcodes = $this->parser->getOpcodes();
-        $this->assertTrue(is_a($opcodes, 'cogpowered\FineDiff\Parser\OpcodesInterface'));
+        $this->assertTrue(is_a($opcodes, OpcodesInterface::class));
     }
 
     public function testSetOpcodes()
     {
-        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock(Opcodes::class);
         $opcodes->shouldReceive('foo')->andReturn('bar');
         $this->parser->setOpcodes($opcodes);
 
@@ -43,8 +47,8 @@ class ParserTest extends TestCase
 
     public function testParseBadGranularity()
     {
-        $this->expectException(\cogpowered\FineDiff\Exceptions\GranularityCountException::class);
-        $granularity = Mockery::mock('cogpowered\FineDiff\Granularity\Character');
+        $this->expectException(GranularityCountException::class);
+        $granularity = Mockery::mock(Character::class);
         $granularity->shouldReceive('count')->andReturn(0);
         $parser = new Parser($granularity);
 
@@ -56,7 +60,7 @@ class ParserTest extends TestCase
         // Dummy to make phpunit not mark this test risky
         self::assertTrue(true);
 
-        $opcodes = Mockery::mock('cogpowered\FineDiff\Parser\Opcodes');
+        $opcodes = Mockery::mock(Opcodes::class);
         $opcodes->shouldReceive('setOpcodes')->once();
         $this->parser->setOpcodes($opcodes);
 

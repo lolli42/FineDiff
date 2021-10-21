@@ -3,6 +3,7 @@
 namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\Insert;
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use PHPUnit\Framework\TestCase;
 
 class InsertTest extends TestCase
@@ -10,7 +11,7 @@ class InsertTest extends TestCase
     public function testImplementsOperationInterface()
     {
         $replace = new Insert('hello world');
-        $this->assertTrue(is_a($replace, 'cogpowered\FineDiff\Parser\Operations\OperationInterface'));
+        $this->assertTrue(is_a($replace, OperationInterface::class));
     }
 
     public function testGetFromLen()

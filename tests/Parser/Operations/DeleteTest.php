@@ -3,6 +3,7 @@
 namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\Delete;
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use PHPUnit\Framework\TestCase;
 
 class DeleteTest extends TestCase
@@ -10,7 +11,7 @@ class DeleteTest extends TestCase
     public function testImplementsOperationInterface()
     {
         $replace = new Delete(10);
-        $this->assertTrue(is_a($replace, 'cogpowered\FineDiff\Parser\Operations\OperationInterface'));
+        $this->assertTrue(is_a($replace, OperationInterface::class));
     }
 
     public function testGetFromLen()
