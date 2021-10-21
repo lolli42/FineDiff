@@ -2,9 +2,9 @@
 
 namespace FineDiffTests\Delimiters;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 
-class EnumTest extends PHPUnit_Framework_TestCase
+class EnumTest extends BaseTestCase
 {
     public function testCantInstantiate()
     {

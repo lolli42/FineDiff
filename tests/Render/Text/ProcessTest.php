@@ -2,11 +2,11 @@
 
 namespace FineDiffTests\Render\Text;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use Mockery as m;
 use cogpowered\FineDiff\Render\Text;
 
-class ProcessTest extends PHPUnit_Framework_TestCase
+class ProcessTest extends BaseTestCase
 {
     public function setUp()
     {

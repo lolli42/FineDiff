@@ -2,12 +2,12 @@
 
 namespace FineDiffTests\Parser;
 
-use PHPUnit_Framework_TestCase;
+use FineDiffTests\BaseTestCase;
 use Mockery as m;
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Parser\Parser;
 
-class ParserTest extends PHPUnit_Framework_TestCase
+class ParserTest extends BaseTestCase
 {
     public function setUp()
     {
