@@ -18,8 +18,6 @@
 
 namespace cogpowered\FineDiff;
 
-use cogpowered\FineDiff\Exceptions\GranularityCountException;
-use cogpowered\FineDiff\Exceptions\OperationException;
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Parser\Opcodes;
