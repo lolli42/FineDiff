@@ -4,68 +4,50 @@ namespace cogpowered\FineDiff\Tests\Parser;
 
 use cogpowered\FineDiff\Exceptions\GranularityCountException;
 use cogpowered\FineDiff\Granularity\Character;
+use cogpowered\FineDiff\Granularity\Granularity;
 use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Parser\ParserInterface;
-use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
     /**
-     * @var Parser
+     * @test
      */
-    private $parser;
-
-    public function setUp(): void
+    public function isInstanceOfParserInterface(): void
     {
-        $this->parser = new Parser(new Character());
+        self::assertInstanceOf(ParserInterface::class, new Parser(new Character()));
     }
 
-    public function tearDown(): void
+    /**
+     * @test
+     */
+    public function opcodesIsCreated(): void
     {
-        Mockery::close();
+        self::assertInstanceOf(OpcodesInterface::class, (new Parser(new Character()))->getOpcodes());
     }
 
-    public function testInstanceOf()
-    {
-        self::assertTrue(is_a($this->parser, ParserInterface::class));
-    }
-
-    public function testDefaultOpcodes()
-    {
-        $opcodes = $this->parser->getOpcodes();
-        self::assertTrue(is_a($opcodes, OpcodesInterface::class));
-    }
-
-    public function testSetAndGetOpcodes()
+    /**
+     * @test
+     */
+    public function opcodesCanBeSetAndSet(): void
     {
         $opcodes = new Opcodes();
-        $parser = new Parser(new Character());
-        $parser->setOpcodes($opcodes);
-        self::assertSame($opcodes, $parser->getOpcodes());
+        $subject = new Parser(new Character());
+        $subject->setOpcodes($opcodes);
+        self::assertSame($opcodes, $subject->getOpcodes());
     }
 
-    public function testParseBadGranularity()
+    /**
+     * @test
+     */
+    public function parseThrowsWithEmptyGranularity(): void
     {
         $this->expectException(GranularityCountException::class);
-        $granularity = Mockery::mock(Character::class);
-        $granularity->shouldReceive('count')->andReturn(0);
-        $parser = new Parser($granularity);
-
-        $parser->parse('hello world', 'hello2 worl');
-    }
-
-    public function testParseSetOpcodes()
-    {
-        // Dummy to make phpunit not mark this test risky
-        self::assertTrue(true);
-
-        $opcodes = Mockery::mock(Opcodes::class);
-        $opcodes->shouldReceive('setOpcodes')->once();
-        $this->parser->setOpcodes($opcodes);
-
-        $this->parser->parse('Hello worlds', 'Hello2 world');
+        $granularity = new class() extends Granularity {
+        };
+        (new Parser($granularity))->parse('foo', 'bar');
     }
 }

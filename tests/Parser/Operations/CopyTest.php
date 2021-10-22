@@ -8,39 +8,47 @@ use PHPUnit\Framework\TestCase;
 
 class CopyTest extends TestCase
 {
-    public function testImplementsOperationInterface()
+    /**
+     * @test
+     */
+    public function instanceImplementsOperationsInterface(): void
     {
-        $replace = new Copy(10);
-        self::assertTrue(is_a($replace, OperationInterface::class));
+        self::assertInstanceOf(OperationInterface::class, new Copy(10));
     }
 
-    public function testGetFromLen()
+    /**
+     * @test
+     */
+    public function getFromLenFromConstruct(): void
     {
-        $copy = new Copy(10);
-        self::assertEquals($copy->getFromLen(), 10);
+        self::assertEquals(10, (new Copy(10))->getFromLen());
     }
 
-    public function testGetToLen()
+    /**
+     * @test
+     */
+    public function getToLenFromContstruct(): void
     {
-        $copy = new Copy(342);
-        self::assertEquals($copy->getToLen(), 342);
+        self::assertEquals(342, (new Copy(342))->getToLen());
     }
 
-    public function testGetOpcode()
+    /**
+     * @test
+     */
+    public function getOpcodes(): void
     {
-        $copy = new Copy(1);
-        self::assertEquals($copy->getOpcode(), 'c');
-
-        $copy = new Copy(24);
-        self::assertEquals($copy->getOpcode(), 'c24');
+        self::assertEquals('c', (new Copy(1))->getOpcode());
+        self::assertEquals('c24', (new Copy(24))->getOpcode());
     }
 
-    public function testIncrease()
+    /**
+     * @test
+     */
+    public function increase(): void
     {
         $copy = new Copy(25);
-
-        self::assertEquals($copy->increase(5), 30);
-        self::assertEquals($copy->increase(10), 40);
-        self::assertEquals($copy->increase(64), 104);
+        self::assertEquals(30, $copy->increase(5));
+        self::assertEquals(40, $copy->increase(10));
+        self::assertEquals(104, $copy->increase(64));
     }
 }

@@ -8,41 +8,139 @@ use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Granularity\Paragraph;
 use cogpowered\FineDiff\Granularity\Sentence;
 use cogpowered\FineDiff\Granularity\Word;
+use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Render\Html;
 use cogpowered\FineDiff\Render\Text;
 use PHPUnit\Framework\TestCase;
 
 class DiffTest extends TestCase
 {
-    public function processAndRenderDataProvider()
+    /**
+     * @test
+     */
+    public function getDefaultInstances(): void
+    {
+        $diff = new Diff();
+        self::assertInstanceOf(Character::class, $diff->getGranularity());
+        self::assertInstanceOf(Html::class, $diff->getRenderer());
+        self::assertInstanceOf(Parser::class, $diff->getParser());
+    }
+
+    /**
+     * @test
+     */
+    public function instancesFromConstruct(): void
+    {
+        $character = new Character();
+        self::assertSame($character, (new Diff($character))->getGranularity());
+        $html = new Html();
+        self::assertSame($html, (new Diff(null, $html))->getRenderer());
+        $parser = new Parser(new Word());
+        self::assertSame($parser, (new Diff(null, null, $parser))->getParser());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetParser(): void
+    {
+        $parser = new Parser(new Word());
+        $subject = new Diff();
+        $subject->setParser($parser);
+        self::assertEquals($parser, $subject->getParser());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetRenderer(): void
+    {
+        $renderer = new Html();
+        $subject = new Diff();
+        $subject->setRenderer($renderer);
+        self::assertEquals($renderer, $subject->getRenderer());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetGranularity(): void
+    {
+        $parser = new Parser(new Word());
+        $subject = new Diff();
+        $subject->setParser($parser);
+        $granularity = new Word();
+        $subject->setGranularity($granularity);
+        self::assertSame($granularity, $subject->getGranularity());
+        self::assertSame($granularity, $subject->getParser()->getGranularity());
+    }
+
+    public function processAndRenderDataProvider(): array
     {
         return [
+            'single word' => [
+                new Character(),
+                'hello',
+                'hello2',
+                'c5i:2',
+                'hello<ins>2</ins>'
+            ],
+            'two words #1' => [
+                new Character(),
+                'hello world',
+                'hello2 worlds',
+                'c5i:2c6i:s',
+                'hello<ins>2</ins> world<ins>s</ins>',
+            ],
+            'two words #2' => [
+                new Character(),
+                'hello worlds',
+                'hello2 world',
+                'c5i:2c6d',
+                'hello<ins>2</ins> world<del>s</del>',
+            ],
             'character' => [
                 new Character(),
+                'This is the 1st sentence. Its then carried on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
+                'This is the 1st sentence. It then carries on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
                 'c28dc12di:sc73',
                 'This is the 1st sentence. It<del>s</del> then carrie<del>d</del><ins>s</ins> on into another.'
-                    . chr(10) . 'This is another paragraph, just to test things further!'
+                    . chr(10) . 'This is another paragraph, just to test things further!',
             ],
             'word' => [
                 new Word(),
+                'This is the 1st sentence. Its then carried on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
+                'This is the 1st sentence. It then carries on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
                 'c26d4i3:It c5d8i8:carries c72',
                 'This is the 1st sentence. <del>Its </del><ins>It </ins>then <del>carried </del><ins>carries </ins>on into another.'
-                    . chr(10) . 'This is another paragraph, just to test things further!'
+                    . chr(10) . 'This is another paragraph, just to test things further!',
             ],
             'paragraph' => [
                 new Paragraph(),
+                'This is the 1st sentence. Its then carried on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
+                'This is the 1st sentence. It then carries on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
                 'd60i59:This is the 1st sentence. It then carries on into another.'
                     . chr(10) . 'c55',
                 '<del>This is the 1st sentence. Its then carried on into another.'
                     . chr(10) . '</del><ins>This is the 1st sentence. It then carries on into another.'
-                    . chr(10) . '</ins>This is another paragraph, just to test things further!'
+                    . chr(10) . '</ins>This is another paragraph, just to test things further!',
             ],
             'sentence' => [
                 new Sentence(),
+                'This is the 1st sentence. Its then carried on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
+                'This is the 1st sentence. It then carries on into another.'
+                . chr(10) . 'This is another paragraph, just to test things further!',
                 'c25d35i34: It then carries on into another.'
                     . chr(10) . 'c55',
                 'This is the 1st sentence.<del> Its then carried on into another.\n</del><ins> It then carries on into another.'
-                    . chr(10) . '</ins>This is another paragraph, just to test things further!'
+                    . chr(10) . '</ins>This is another paragraph, just to test things further!',
             ],
         ];
     }
@@ -51,13 +149,13 @@ class DiffTest extends TestCase
      * @dataProvider processAndRenderDataProvider
      * @test
      */
-    public function parseAndRender(GranularityInterface $granularity, string $expectedOpcode, string $expectedHtml)
-    {
-        $from = 'This is the 1st sentence. Its then carried on into another.'
-            . chr(10) . 'This is another paragraph, just to test things further!';
-        $to = 'This is the 1st sentence. It then carries on into another.'
-            . chr(10) . 'This is another paragraph, just to test things further!';
-
+    public function parseAndRender(
+        GranularityInterface $granularity,
+        string $from,
+        string $to,
+        string $expectedOpcode,
+        string $expectedHtml
+    ): void {
         $diff = new Diff($granularity);
         $generated_opcodes = (string)$diff->getOpcodes($from, $to);
         self::assertEquals($generated_opcodes, $expectedOpcode);
