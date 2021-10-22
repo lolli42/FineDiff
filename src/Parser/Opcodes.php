@@ -19,6 +19,7 @@
 namespace cogpowered\FineDiff\Parser;
 
 use cogpowered\FineDiff\Exceptions\OperationException;
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 
 /**
  * Holds all the opcodes returned by the parser.
@@ -48,7 +49,7 @@ class Opcodes implements OpcodesInterface
         // Ensure that all elements of the array
         // are of the correct type
         foreach ($opcodes as $opcode) {
-            if (!is_a($opcode, 'cogpowered\FineDiff\Parser\Operations\OperationInterface')) {
+            if (!is_a($opcode, OperationInterface::class)) {
                 throw new OperationException('Invalid opcode object');
             }
 
