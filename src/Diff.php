@@ -55,9 +55,6 @@ class Diff
      * @param GranularityInterface|null $granularity Level of diff.
      * @param RendererInterface|null $renderer Diff renderer.
      * @param ParserInterface|null $parser Parser used to generate opcodes.
-     *
-     * @throws GranularityCountException
-     * @throws OperationException
      */
     public function __construct(GranularityInterface $granularity = null, RendererInterface $renderer = null, ParserInterface $parser = null)
     {
