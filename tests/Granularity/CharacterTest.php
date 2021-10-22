@@ -4,86 +4,63 @@ namespace cogpowered\FineDiff\Tests\Granularity;
 
 use cogpowered\FineDiff\Delimiters;
 use cogpowered\FineDiff\Granularity\Character;
-use cogpowered\FineDiff\Granularity\Granularity;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 use PHPUnit\Framework\TestCase;
 
 class CharacterTest extends TestCase
 {
     /**
-     * @var Character
+     * @test
      */
-    private $character;
-
-    private $delimiters = [
-        Delimiters::PARAGRAPH,
-        Delimiters::SENTENCE,
-        Delimiters::WORD,
-        Delimiters::CHARACTER,
-    ];
-
-    public function setUp(): void
+    public function instanceImplementsClasses(): void
     {
-        $this->character = new Character();
+        $subject = new Character();
+        self::assertInstanceOf(\Countable::class, $subject);
+        self::assertInstanceOf(\ArrayAccess::class, $subject);
+        self::assertInstanceOf(GranularityInterface::class, $subject);
     }
 
-    public function testExtendsAndImplements()
+    /**
+     * @test
+     */
+    public function getDelimitersReturnsDelimiters(): void
     {
-        self::assertTrue(is_a($this->character, Granularity::class));
-        self::assertTrue(is_a($this->character, GranularityInterface::class));
-        self::assertTrue(is_a($this->character, \ArrayAccess::class));
-        self::assertTrue(is_a($this->character, \Countable::class));
+        self::assertEquals(
+            [Delimiters::PARAGRAPH, Delimiters::SENTENCE, Delimiters::WORD, Delimiters::CHARACTER],
+            (new Character())->getDelimiters()
+        )
+        ;
     }
 
-    public function testGetDelimiters()
+    /**
+     * @test
+     */
+    public function isCountable(): void
     {
-        self::assertEquals($this->character->getDelimiters(), $this->delimiters);
+        self::assertCount(4, new Character());
     }
 
-    public function testSetDelimiters()
+    /**
+     * @test
+     */
+    public function setAndGetDelimiters(): void
     {
-        $arr = ['one', 'two'];
-        $this->character->setDelimiters($arr);
-        self::assertEquals($this->character->getDelimiters(), $arr);
+        $delimiters = ['one', 'two'];
+        $subject = new Character();
+        $subject->setDelimiters($delimiters);
+        self::assertEquals($delimiters, $subject->getDelimiters());
     }
 
-    public function testCountable()
+    /**
+     * @test
+     */
+    public function arrayAccess(): void
     {
-        self::assertEquals(count($this->character), count($this->delimiters));
-    }
-
-    public function testArrayAccess()
-    {
-        // Exists
-        for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-            if ($i !== count($this->delimiters)) {
-                self::assertTrue(isset($this->character[$i]));
-            } else {
-                self::assertFalse(isset($this->character[$i]));
-            }
-        }
-
-        // Get
-        for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-            if ($i !== count($this->delimiters)) {
-                self::assertEquals($this->character[$i], $this->delimiters[$i]);
-            } else {
-                self::assertNull($this->character[$i]);
-            }
-        }
-
-        // Set
-        for ($i = 0; $i < count($this->delimiters) + 1; $i++) {
-            $rand = rand(0, 1000);
-
-            $this->character[$i] = $rand;
-            self::assertEquals($this->character[$i], $rand);
-        }
-
-        self::assertEquals(count($this->character), count($this->delimiters) + 1);
-
-        // Unset
-        unset($this->character[ count($this->delimiters) ]);
-        self::assertEquals(count($this->character), count($this->delimiters));
+        $subject = new Character();
+        self::assertSame(Delimiters::SENTENCE, $subject[1]);
+        $subject[1] = 'foo';
+        self::assertSame('foo', $subject[1]);
+        unset($subject[1]);
+        self::assertCount(3, $subject);
     }
 }

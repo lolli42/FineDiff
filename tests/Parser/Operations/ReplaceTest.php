@@ -8,51 +8,70 @@ use PHPUnit\Framework\TestCase;
 
 class ReplaceTest extends TestCase
 {
-    public function testImplementsOperationInterface()
+    /**
+     * @test
+     */
+    public function instanceImplementsOperationsInterface(): void
     {
-        $replace = new Replace('hello', 'world');
-        self::assertTrue(is_a($replace, OperationInterface::class));
+        self::assertInstanceOf(OperationInterface::class, new Replace(2, 'world'));
     }
 
-    public function testGetFromLen()
+    /**
+     * @test
+     */
+    public function getFromLen(): void
     {
-        $replace = new Replace('hello', 'world');
-        self::assertEquals($replace->getFromLen(), 'hello');
+        self::assertEquals(5, (new Replace(5, 'world'))->getFromLen());
     }
 
-    public function testGetToLen()
+    /**
+     * @test
+     */
+    public function testGetText(): void
     {
-        $replace = new Replace('hello', 'world');
-        self::assertEquals($replace->getToLen(), 5);
+        self::assertEquals('bar', (new Replace(3, 'bar'))->getText());
     }
 
-    public function testGetText()
+    /**
+     * @test
+     */
+    public function getToLen(): void
     {
-        $replace = new Replace('foo', 'bar');
-        self::assertEquals($replace->getText(), 'bar');
+        self::assertEquals(5, (new Replace('hello', 'world'))->getToLen());
     }
 
-    public function testGetOpcodeSingleTextChar()
+    public function getOpcodeDataProvider(): array
     {
-        $replace = new Replace(1, 'c');
-        self::assertEquals($replace->getOpcode(), 'di:c');
-
-        $replace = new Replace('r', 'c');
-        self::assertEquals($replace->getOpcode(), 'dri:c');
-
-        $replace = new Replace('rob', 'c');
-        self::assertEquals($replace->getOpcode(), 'drobi:c');
+        return [
+            'replace single char' => [
+                1, // toLen
+                'c', // text
+                'di:c', // delete 1 char, insert c
+            ],
+            'replace single char with multi chars' => [
+                1,
+                'crowe',
+                'di5:crowe', // delete 1 char, insert crowe
+            ],
+            'replace multi char with single' => [
+                2,
+                'c',
+                'd2i:c', // delete 2 char, insert c
+            ],
+            'replace multi char with multi' => [
+                2,
+                'cr',
+                'd2i2:cr', // delete 2 char, insert c
+            ],
+        ];
     }
 
-    public function testGetOpcodeLongerTextString()
+    /**
+     * @test
+     * @dataProvider getOpcodeDataProvider
+     */
+    public function getOpcode($fromLen, $text, $expected): void
     {
-        $replace = new Replace(1, 'crowe');
-        self::assertEquals($replace->getOpcode(), 'di5:crowe');
-
-        $replace = new Replace('r', 'crowe');
-        self::assertEquals($replace->getOpcode(), 'dri5:crowe');
-
-        $replace = new Replace('rob', 'crowe');
-        self::assertEquals($replace->getOpcode(), 'drobi5:crowe');
+        self::assertSame($expected, (new Replace($fromLen, $text))->getOpcode());
     }
 }

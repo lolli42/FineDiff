@@ -8,30 +8,36 @@ use PHPUnit\Framework\TestCase;
 
 class DeleteTest extends TestCase
 {
-    public function testImplementsOperationInterface()
+    /**
+     * @test
+     */
+    public function instanceImplementsOperationsInterface(): void
     {
-        $replace = new Delete(10);
-        self::assertTrue(is_a($replace, OperationInterface::class));
+        self::assertInstanceOf(OperationInterface::class, new Delete(10));
     }
 
-    public function testGetFromLen()
+    /**
+     * @test
+     */
+    public function getFromLenFromConstruct(): void
     {
-        $delete = new Delete(10);
-        self::assertEquals($delete->getFromLen(), 10);
+        self::assertEquals(10, (new Delete(10))->getFromLen());
     }
 
-    public function testGetToLen()
+    /**
+     * @test
+     */
+    public function getToLenFromConstruct(): void
     {
-        $delete = new Delete(342);
-        self::assertEquals($delete->getToLen(), 0);
+        self::assertEquals(0, (new Delete(342))->getToLen());
     }
 
-    public function testGetOpcode()
+    /**
+     * @test
+     */
+    public function getOpcode(): void
     {
-        $delete = new Delete(1);
-        self::assertEquals($delete->getOpcode(), 'd');
-
-        $delete = new Delete(24);
-        self::assertEquals($delete->getOpcode(), 'd24');
+        self::assertEquals('d', (new Delete(1))->getOpcode());
+        self::assertEquals('d24', (new Delete(24))->getOpcode());
     }
 }

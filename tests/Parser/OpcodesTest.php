@@ -6,90 +6,80 @@ use cogpowered\FineDiff\Exceptions\OperationException;
 use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Operations\Copy;
-use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class OpcodesTest extends TestCase
 {
-    public function tearDown(): void
+    /**
+     * @test
+     */
+    public function isInstanceOfOpcodesInterface(): void
     {
-        Mockery::close();
+        self::assertInstanceOf(OpcodesInterface::class, new Opcodes());
     }
 
-    public function testInstanceOf()
-    {
-        self::assertTrue(is_a(new Opcodes(), OpcodesInterface::class));
-    }
-
-    public function testEmptyOpcodes()
-    {
-        $opcodes = new Opcodes();
-        self::assertEmpty($opcodes->getOpcodes());
-    }
-
-    public function testSetOpcodes()
-    {
-        $operation = Mockery::mock(Copy::class);
-        $operation->shouldReceive('getOpcode')->once()->andReturn('testing');
-
-        $opcodes = new Opcodes();
-        $opcodes->setOpcodes([$operation]);
-
-        $opcodes = $opcodes->getOpcodes();
-        self::assertEquals($opcodes[0], 'testing');
-    }
-
-    public function testNotOperation()
+    /**
+     * @test
+     */
+    public function setOpcodesThrowsExceptionOnInvalidOperation(): void
     {
         $this->expectException(OperationException::class);
         $opcodes = new Opcodes();
         $opcodes->setOpcodes(['test']);
     }
 
-    public function testGetOpcodes()
+    /**
+     * @test
+     */
+    public function getOpcodesReturnsEmptyOpcodes(): void
     {
-        $operation_one = Mockery::mock(Copy::class);
-        $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
-
-        $operation_two = Mockery::mock(Copy::class);
-        $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
-
-        $opcodes = new Opcodes();
-        $opcodes->setOpcodes([$operation_one, $operation_two]);
-
-        $opcodes = $opcodes->getOpcodes();
-
-        self::assertTrue(is_array($opcodes));
-        self::assertEquals($opcodes[0], 'c5i');
-        self::assertEquals($opcodes[1], '2c6d');
+        self::assertSame([], (new Opcodes())->getOpcodes());
     }
 
-    public function testGenerate()
+    /**
+     * @test
+     */
+    public function getOpcodesProcessSimpleOperation(): void
     {
-        $operation_one = Mockery::mock(Copy::class);
-        $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
-
-        $operation_two = Mockery::mock(Copy::class);
-        $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
-
-        $opcodes = new Opcodes();
-        $opcodes->setOpcodes([$operation_one, $operation_two]);
-
-        self::assertEquals($opcodes->generate(), 'c5i2c6d');
+        $copyOperation = new Copy(0);
+        $subject = new Opcodes();
+        $subject->setOpcodes([$copyOperation]);
+        self::assertEquals(['c0'], $subject->getOpcodes());
     }
 
-    public function testToString()
+    /**
+     * @test
+     */
+    public function getOpcodesProcessMultipleOperations(): void
     {
-        $operation_one = Mockery::mock(Copy::class);
-        $operation_one->shouldReceive('getOpcode')->andReturn('c5i');
+        $copyOperation1 = new Copy(3);
+        $copyOperation2 = new Copy(5);
+        $subject = new Opcodes();
+        $subject->setOpcodes([$copyOperation1, $copyOperation2]);
+        self::assertEquals(['c3', 'c5'], $subject->getOpcodes());
+    }
 
-        $operation_two = Mockery::mock(Copy::class);
-        $operation_two->shouldReceive('getOpcode')->andReturn('2c6d');
+    /**
+     * @test
+     */
+    public function generateReturnsOpcode(): void
+    {
+        $copyOperation1 = new Copy(3);
+        $copyOperation2 = new Copy(5);
+        $subject = new Opcodes();
+        $subject->setOpcodes([$copyOperation1, $copyOperation2]);
+        self::assertEquals('c3c5', $subject->generate());
+    }
 
-        $opcodes = new Opcodes();
-        $opcodes->setOpcodes([$operation_one, $operation_two]);
-
-        self::assertEquals((string)$opcodes, 'c5i2c6d');
-        self::assertEquals((string)$opcodes, $opcodes->generate());
+    /**
+     * @test
+     */
+    public function castToString(): void
+    {
+        $copyOperation1 = new Copy(3);
+        $copyOperation2 = new Copy(5);
+        $subject = new Opcodes();
+        $subject->setOpcodes([$copyOperation1, $copyOperation2]);
+        self::assertEquals('c3c5', (string)$subject);
     }
 }

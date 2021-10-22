@@ -8,36 +8,44 @@ use PHPUnit\Framework\TestCase;
 
 class InsertTest extends TestCase
 {
-    public function testImplementsOperationInterface()
+    /**
+     * @test
+     */
+    public function instanceImplementsOperationsInterface(): void
     {
-        $replace = new Insert('hello world');
-        self::assertTrue(is_a($replace, OperationInterface::class));
+        self::assertInstanceOf(OperationInterface::class, new Insert(10));
     }
 
-    public function testGetFromLen()
+    /**
+     * @test
+     */
+    public function getFromLenFromDefault(): void
     {
-        $insert = new Insert('hello world');
-        self::assertEquals($insert->getFromLen(), 0);
+        self::assertEquals(0, (new Insert('hello world'))->getFromLen());
     }
 
-    public function testGetToLen()
+    /**
+     * @test
+     */
+    public function testGetToLenFromConstruct(): void
     {
-        $insert = new Insert('hello world');
-        self::assertEquals($insert->getToLen(), 11);
+        self::assertEquals(11, (new Insert('hello world'))->getToLen());
     }
 
-    public function testGetText()
+    /**
+     * @test
+     */
+    public function getTextFromConstruct(): void
     {
-        $insert = new Insert('foobar');
-        self::assertEquals($insert->getText(), 'foobar');
+        self::assertEquals('foobar', (new Insert('foobar'))->getText());
     }
 
-    public function testGetOpcode()
+    /**
+     * @test
+     */
+    public function getOpcode(): void
     {
-        $insert = new Insert('C');
-        self::assertEquals($insert->getOpcode(), 'i:C');
-
-        $insert = new Insert('blue');
-        self::assertEquals($insert->getOpcode(), 'i4:blue');
+        self::assertEquals('i:C', (new Insert('C'))->getOpcode());
+        self::assertEquals('i4:blue', (new Insert('blue'))->getOpcode());
     }
 }
