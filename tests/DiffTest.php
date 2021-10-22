@@ -1,6 +1,6 @@
 <?php
 
-namespace cogpowered\FineDiff\Tests\Usage;
+namespace cogpowered\FineDiff\Tests;
 
 use cogpowered\FineDiff\Diff;
 use cogpowered\FineDiff\Granularity\Character;
@@ -12,7 +12,7 @@ use cogpowered\FineDiff\Render\Html;
 use cogpowered\FineDiff\Render\Text;
 use PHPUnit\Framework\TestCase;
 
-class SimpleTest extends TestCase
+class DiffTest extends TestCase
 {
     public function processAndRenderDataProvider()
     {
@@ -62,7 +62,7 @@ class SimpleTest extends TestCase
         $generated_opcodes = (string)$diff->getOpcodes($from, $to);
         self::assertEquals($generated_opcodes, $expectedOpcode);
         $render = new Text();
-        self::assertEquals((string)$render->process($from, $generated_opcodes), $to);
+        self::assertEquals($render->process($from, $generated_opcodes), $to);
         self::assertEquals($diff->render($from, $to), $expectedHtml);
         $render = new Html();
         self::assertEquals($render->process($from, $generated_opcodes), $expectedHtml);
