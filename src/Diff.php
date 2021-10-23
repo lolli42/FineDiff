@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * FINE granularity DIFF
  *
@@ -20,7 +22,6 @@ namespace cogpowered\FineDiff;
 
 use cogpowered\FineDiff\Granularity\Character;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
-use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Parser\ParserInterface;
