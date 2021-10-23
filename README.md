@@ -3,7 +3,7 @@
 FineDiff
 ========
 
-FineDiff is a rather simple library to create HTML diff view of two string:
+FineDiff is a rather simple library to create HTML diff view of two strings:
 
 ```php
 echo (new Diff())->render('hello world', 'hello2 worlds');
