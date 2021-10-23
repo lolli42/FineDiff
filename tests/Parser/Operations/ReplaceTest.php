@@ -37,7 +37,7 @@ class ReplaceTest extends TestCase
      */
     public function getToLen(): void
     {
-        self::assertEquals(5, (new Replace('hello', 'world'))->getToLen());
+        self::assertEquals(5, (new Replace(3, 'world'))->getToLen());
     }
 
     public function getOpcodeDataProvider(): array

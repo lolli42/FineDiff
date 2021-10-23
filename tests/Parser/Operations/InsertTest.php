@@ -13,7 +13,7 @@ class InsertTest extends TestCase
      */
     public function instanceImplementsOperationsInterface(): void
     {
-        self::assertInstanceOf(OperationInterface::class, new Insert(10));
+        self::assertInstanceOf(OperationInterface::class, new Insert('foo'));
     }
 
     /**
