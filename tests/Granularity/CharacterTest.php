@@ -71,8 +71,8 @@ class CharacterTest extends TestCase
     {
         $subject = new Character();
         self::assertSame(Delimiters::SENTENCE, $subject[1]);
-        $subject[1] = 'foo';
-        self::assertSame('foo', $subject[1]);
+        $subject[1] = Delimiters::PARAGRAPH;
+        self::assertSame(Delimiters::PARAGRAPH, $subject[1]);
         unset($subject[1]);
         self::assertCount(3, $subject);
     }

@@ -88,6 +88,9 @@ class DiffTest extends TestCase
         self::assertSame($granularity, $subject->getParser()->getGranularity());
     }
 
+    /**
+     * @return array[]
+     */
     public function processAndRenderDataProvider(): array
     {
         return [

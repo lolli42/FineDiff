@@ -15,8 +15,16 @@ declare(strict_types=1);
 
 namespace cogpowered\FineDiff\Render;
 
+use cogpowered\FineDiff\Parser\OpcodesInterface;
+
 interface RendererInterface
 {
-    public function process($from_text, $opcode);
-    public function callback($opcode, $from, $from_offset, $from_len);
+    /**
+     * @param string $from_text
+     * @param string|OpcodesInterface|mixed $opcode Throws on non-string and non-OpcodesInterface
+     * @return string
+     */
+    public function process(string $from_text, $opcode);
+
+    public function callback(string $opcode, string $from, int $from_offset, int $from_len): string;
 }

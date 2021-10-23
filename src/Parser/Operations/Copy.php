@@ -30,31 +30,22 @@ class Copy implements OperationInterface
      *
      * @param int $len Length of string.
      */
-    public function __construct($len)
+    public function __construct(int $len)
     {
         $this->len = $len;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getFromLen()
+    public function getFromLen(): int
     {
         return $this->len;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getToLen()
+    public function getToLen(): int
     {
         return $this->len;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getOpcode()
+    public function getOpcode(): string
     {
         if ($this->len === 1) {
             return 'c';
@@ -69,7 +60,7 @@ class Copy implements OperationInterface
      * @param int $size Amount to increase the string length by.
      * @return int New length
      */
-    public function increase($size)
+    public function increase(int $size): int
     {
         return $this->len += $size;
     }

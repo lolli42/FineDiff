@@ -21,7 +21,7 @@ namespace cogpowered\FineDiff\Granularity;
 abstract class Granularity implements GranularityInterface
 {
     /**
-     * @var array Extending granularities should override this.
+     * @var array<int, string> Extending granularities should override this.
      */
     protected $delimiters = [];
 
@@ -40,7 +40,7 @@ abstract class Granularity implements GranularityInterface
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return isset($this->delimiters[$offset]) ? $this->delimiters[$offset] : null;
+        return $this->delimiters[$offset] ?? null;
     }
 
     /**
@@ -79,7 +79,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
-    public function getDelimiters()
+    public function getDelimiters(): array
     {
         return $this->delimiters;
     }
@@ -87,7 +87,7 @@ abstract class Granularity implements GranularityInterface
     /**
      * @inheritdoc
      */
-    public function setDelimiters(array $delimiters)
+    public function setDelimiters(array $delimiters): void
     {
         $this->delimiters = $delimiters;
     }

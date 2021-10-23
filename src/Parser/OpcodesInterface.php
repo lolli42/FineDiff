@@ -15,37 +15,31 @@ declare(strict_types=1);
 
 namespace cogpowered\FineDiff\Parser;
 
-use cogpowered\FineDiff\Exceptions\OperationException;
+use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 
 interface OpcodesInterface
 {
     /**
      * Get the opcodes.
      *
-     * @return array
+     * @return array<int, string>
      */
-    public function getOpcodes();
+    public function getOpcodes(): array;
 
     /**
      * Set the opcodes for this parse.
      *
-     * @param array $opcodes Elements must be an instance of OperationInterface.
-     * @throws OperationException
+     * @param array<int, OperationInterface> $opcodes Elements must be an instance of OperationInterface.
      */
-    public function setOpcodes(array $opcodes);
+    public function setOpcodes(array $opcodes): void;
 
     /**
      * Return the opcodes in a format that can then be rendered.
-     *
-     * @return string
      */
-    public function generate();
+    public function generate(): string;
 
     /**
      * When object is cast to a string returns opcodes as string.
-     *
-     * @see Opcodes::generate
-     * @return string
      */
     public function __toString();
 }

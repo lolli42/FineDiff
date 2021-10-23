@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace cogpowered\FineDiff\Parser;
 
-use cogpowered\FineDiff\Exceptions\GranularityCountException;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 
 interface ParserInterface
@@ -37,27 +36,20 @@ interface ParserInterface
     /**
      * Set the granularity that the parser is working with.
      */
-    public function setGranularity(GranularityInterface $granularity);
+    public function setGranularity(GranularityInterface $granularity): void;
 
     /**
      * Get the opcodes object that is used to store all the opcodes.
-     *
-     * @return OpcodesInterface
      */
-    public function getOpcodes();
+    public function getOpcodes(): OpcodesInterface;
 
     /**
      * Set the opcodes object used to store all the opcodes for this parse.
      */
-    public function setOpcodes(OpcodesInterface $opcodes);
+    public function setOpcodes(OpcodesInterface $opcodes): void;
 
     /**
      * Generates the opcodes needed to transform one string to another.
-     *
-     * @param string $from_text
-     * @param string $to_text
-     * @throws GranularityCountException
-     * @return OpcodesInterface
      */
-    public function parse($from_text, $to_text);
+    public function parse(string $from_text, string $to_text): OpcodesInterface;
 }

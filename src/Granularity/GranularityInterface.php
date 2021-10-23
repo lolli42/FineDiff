@@ -15,19 +15,25 @@ declare(strict_types=1);
 
 namespace cogpowered\FineDiff\Granularity;
 
-interface GranularityInterface extends \ArrayAccess, \Countable
+use ArrayAccess;
+use Countable;
+
+/**
+ * @extends ArrayAccess<?int, string>
+ */
+interface GranularityInterface extends ArrayAccess, Countable
 {
     /**
      * Get the delimiters that make up the granularity.
      *
-     * @return array
+     * @return array<int, string>
      */
-    public function getDelimiters();
+    public function getDelimiters(): array;
 
     /**
      * Set the delimiters that make up the granularity.
      *
-     * @param array $delimiters
+     * @param array<int, string> $delimiters
      */
-    public function setDelimiters(array $delimiters);
+    public function setDelimiters(array $delimiters): void;
 }

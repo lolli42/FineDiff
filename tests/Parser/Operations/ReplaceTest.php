@@ -53,6 +53,9 @@ class ReplaceTest extends TestCase
         self::assertEquals(5, (new Replace(3, 'world'))->getToLen());
     }
 
+    /**
+     * @return array[]
+     */
     public function getOpcodeDataProvider(): array
     {
         return [
@@ -83,7 +86,7 @@ class ReplaceTest extends TestCase
      * @test
      * @dataProvider getOpcodeDataProvider
      */
-    public function getOpcode($fromLen, $text, $expected): void
+    public function getOpcode(int $fromLen, string $text, string $expected): void
     {
         self::assertSame($expected, (new Replace($fromLen, $text))->getOpcode());
     }

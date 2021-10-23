@@ -26,7 +26,7 @@ abstract class Renderer implements RendererInterface
      * @param string|OpcodesInterface|mixed $opcodes Throws on non-string and non-OpcodesInterface
      * @return string
      */
-    public function process($from_text, $opcodes)
+    public function process(string $from_text, $opcodes)
     {
         // Validate opcodes
         if (!is_string($opcodes) && !($opcodes instanceof OpcodesInterface)) {

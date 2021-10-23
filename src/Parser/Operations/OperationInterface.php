@@ -17,18 +17,7 @@ namespace cogpowered\FineDiff\Parser\Operations;
 
 interface OperationInterface
 {
-    /**
-     * @return int
-     */
-    public function getFromLen();
-
-    /**
-     * @return int
-     */
-    public function getToLen();
-
-    /**
-     * @return string Opcode for this operation.
-     */
-    public function getOpcode();
+    public function getFromLen(): int;
+    public function getToLen(): int;
+    public function getOpcode(): string;
 }

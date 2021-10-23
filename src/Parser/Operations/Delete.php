@@ -30,36 +30,26 @@ class Delete implements OperationInterface
      *
      * @param int $len Length of string.
      */
-    public function __construct($len)
+    public function __construct(int $len)
     {
         $this->fromLen = $len;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getFromLen()
+    public function getFromLen(): int
     {
         return $this->fromLen;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getToLen()
+    public function getToLen(): int
     {
         return 0;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getOpcode()
+    public function getOpcode(): string
     {
         if ($this->fromLen === 1) {
             return 'd';
         }
-
         return "d{$this->fromLen}";
     }
 }
