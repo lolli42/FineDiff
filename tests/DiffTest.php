@@ -186,6 +186,34 @@ class DiffTest extends TestCase
                 'c6di2:uecdi:äc7',
                 'tr&auml;nen<del>&uuml;</del><ins>ue</ins>b<del>e</del><ins>&auml;</ins>rstr&ouml;mt'
             ],
+            'html special chars are converted #1' => [
+                new Character(),
+                'foo<bär>baz',
+                'foo<bär>baz',
+                'c11',
+                'foo&lt;b&auml;r&gt;baz'
+            ],
+            'html special chars are converted #2' => [
+                new Character(),
+                'foo<bär>baz',
+                'foo<qüx>baz',
+                'c4d3i3:qüxc4',
+                'foo&lt;<del>b&auml;r</del><ins>q&uuml;x</ins>&gt;baz'
+            ],
+            'number string #1' => [
+                new Character(),
+                '123',
+                '143',
+                'cdi:4c',
+                '1<del>2</del><ins>4</ins>3'
+            ],
+            'number string #2' => [
+                new Character(),
+                '112233344',
+                '113366644',
+                'c2d2c2di3:666c2',
+                '11<del>22</del>33<del>3</del><ins>666</ins>44'
+            ]
         ];
     }
 
@@ -202,12 +230,12 @@ class DiffTest extends TestCase
     ): void {
         $diff = new Diff($granularity);
         $generated_opcodes = (string)$diff->getOpcodes($from, $to);
-        self::assertEquals($generated_opcodes, $expectedOpcode);
+        self::assertEquals($expectedOpcode, $generated_opcodes);
         $render = new Text();
-        self::assertEquals($render->process($from, $generated_opcodes), $to);
-        self::assertEquals($diff->render($from, $to), $expectedHtml);
+        self::assertEquals($to, $render->process($from, $generated_opcodes));
+        self::assertEquals($expectedHtml, $diff->render($from, $to));
         $render = new Html();
-        self::assertEquals($render->process($from, $generated_opcodes), $expectedHtml);
-        self::assertEquals($diff->render($from, $to), $expectedHtml);
+        self::assertEquals($expectedHtml, $render->process($from, $generated_opcodes));
+        self::assertEquals($expectedHtml, $diff->render($from, $to));
     }
 }
