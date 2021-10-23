@@ -427,14 +427,6 @@ class Parser implements ParserInterface
     */
     protected function extractFragments($text, $delimiters)
     {
-        // special case: split into characters
-        if (empty($delimiters)) {
-            $chars                = str_split($text, 1);
-            $chars[mb_strlen($text)] = '';
-
-            return $chars;
-        }
-
         $fragments = [];
         $start     = 0;
         $end       = 0;
