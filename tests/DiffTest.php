@@ -78,6 +78,13 @@ class DiffTest extends TestCase
     public function processAndRenderDataProvider(): array
     {
         return [
+            'empty strings' => [
+                new Character(),
+                '',
+                '',
+                '',
+                '',
+            ],
             'single word' => [
                 new Character(),
                 'hello',
@@ -141,6 +148,27 @@ class DiffTest extends TestCase
                     . chr(10) . 'c55',
                 'This is the 1st sentence.<del> Its then carried on into another.\n</del><ins> It then carries on into another.'
                     . chr(10) . '</ins>This is another paragraph, just to test things further!',
+            ],
+            'multibyte strings #1' => [
+                new Character(),
+                'tränenüberströmt',
+                '',
+                'd16',
+                '<del>tr&auml;nen&uuml;berstr&ouml;mt</del>'
+            ],
+            'multibyte strings #2' => [
+                new Character(),
+                '',
+                'tränenüberströmt',
+                'i16:tränenüberströmt',
+                '<ins>tr&auml;nen&uuml;berstr&ouml;mt</ins>'
+            ],
+            'multibyte strings #3' => [
+                new Character(),
+                'tränenüberströmt',
+                'tränenuebärströmt',
+                'c6di2:uecdi:äc7',
+                'tr&auml;nen<del>&uuml;</del><ins>ue</ins>b<del>e</del><ins>&auml;</ins>rstr&ouml;mt'
             ],
         ];
     }
