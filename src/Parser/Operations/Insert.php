@@ -27,49 +27,33 @@ class Insert implements OperationInterface
 
     /**
      * Sets the text that the operation is working with.
-     *
-     * @param string $text
      */
-    public function __construct($text)
+    public function __construct(string $text)
     {
         $this->text = $text;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getFromLen()
+    public function getFromLen(): int
     {
         return 0;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getToLen()
+    public function getToLen(): int
     {
         return mb_strlen($this->text);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getOpcode()
+    public function getOpcode(): string
     {
         $to_len = mb_strlen($this->text);
-
         if ($to_len === 1) {
             return "i:{$this->text}";
         }
-
         return "i{$to_len}:{$this->text}";
     }
 }

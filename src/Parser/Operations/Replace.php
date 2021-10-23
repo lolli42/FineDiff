@@ -31,55 +31,41 @@ class Replace implements OperationInterface
      * @param int $fromLen
      * @param string $text
      */
-    public function __construct($fromLen, $text)
+    public function __construct(int $fromLen, string $text)
     {
         $this->fromLen = $fromLen;
         $this->text    = $text;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getFromLen()
+    public function getFromLen(): int
     {
         return $this->fromLen;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getToLen()
+    public function getToLen(): int
     {
         return mb_strlen($this->text);
     }
 
     /**
      * Get the text the operation is working with.
-     *
-     * @return string
      */
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getOpcode()
+    public function getOpcode(): string
     {
         if ($this->fromLen === 1) {
             $del_opcode = 'd';
         } else {
             $del_opcode = "d{$this->fromLen}";
         }
-
         $to_len = mb_strlen($this->text);
-
         if ($to_len === 1) {
             return "{$del_opcode}i:{$this->text}";
         }
-
         return "{$del_opcode}i{$to_len}:{$this->text}";
     }
 }

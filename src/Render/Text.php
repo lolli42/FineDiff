@@ -17,12 +17,11 @@ namespace cogpowered\FineDiff\Render;
 
 class Text extends Renderer
 {
-    public function callback($opcode, $from, $from_offset, $from_len)
+    public function callback(string $opcode, string $from, int $from_offset, int $from_len): string
     {
         if ($opcode === 'c' || $opcode === 'i') {
             return mb_substr($from, $from_offset, $from_len);
         }
-
         return '';
     }
 }

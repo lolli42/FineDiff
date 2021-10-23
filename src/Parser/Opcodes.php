@@ -24,32 +24,30 @@ use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 class Opcodes implements OpcodesInterface
 {
     /**
-     * @var array Individual opcodes.
+     * @var array<int, string> Individual opcodes.
      */
     protected $opcodes = [];
 
     /**
      * @inheritdoc
      */
-    public function getOpcodes()
+    public function getOpcodes(): array
     {
         return $this->opcodes;
     }
 
     /**
      * @inheritdoc
+     * @throws OperationException
      */
-    public function setOpcodes(array $opcodes)
+    public function setOpcodes(array $opcodes): void
     {
         $this->opcodes = [];
-
-        // Ensure that all elements of the array
-        // are of the correct type
+        // Ensure that all elements of the array are of the correct type.
         foreach ($opcodes as $opcode) {
-            if (!is_a($opcode, OperationInterface::class)) {
+            if (!$opcode instanceof OperationInterface) {
                 throw new OperationException('Invalid opcode object');
             }
-
             $this->opcodes[] = $opcode->getOpcode();
         }
     }
@@ -57,7 +55,7 @@ class Opcodes implements OpcodesInterface
     /**
      * @inheritdoc
      */
-    public function generate()
+    public function generate(): string
     {
         return implode('', $this->opcodes);
     }

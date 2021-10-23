@@ -1,6 +1,12 @@
 parameters:
-    level: 5
+    level: 6
 
     paths:
         - ./src
         - ./tests
+
+    ignoreErrors:
+        -
+            message: "#^Parameter \\#1 \\$opcodes of method cogpowered\\\\FineDiff\\\\Parser\\\\Opcodes\\:\\:setOpcodes\\(\\) expects array\\<int, cogpowered\\\\FineDiff\\\\Parser\\\\Operations\\\\OperationInterface\\>, array\\<int, string\\> given\\.$#"
+            count: 1
+            path: tests/Parser/OpcodesTest.php

@@ -22,6 +22,9 @@ use cogpowered\FineDiff\Delimiters;
  */
 class Word extends Granularity
 {
+    /**
+     * @var array<int, string>
+     */
     protected $delimiters = [
         Delimiters::PARAGRAPH,
         Delimiters::SENTENCE,
