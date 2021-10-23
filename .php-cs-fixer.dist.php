@@ -21,6 +21,7 @@ return (new PhpCsFixer\Config())
         'compact_nullable_typehint' => true,
         'concat_space' => ['spacing' => 'one'],
         'declare_equal_normalize' => ['space' => 'none'],
+        'declare_strict_types' => true,
         'dir_constant' => true,
         'function_typehint_space' => true,
         'lowercase_cast' => true,
