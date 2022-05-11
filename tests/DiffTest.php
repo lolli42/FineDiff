@@ -165,40 +165,47 @@ class DiffTest extends TestCase
                 'This is the 1st sentence.<del> Its then carried on into another.\n</del><ins> It then carries on into another.'
                     . chr(10) . '</ins>This is another paragraph, just to test things further!',
             ],
-            'multibyte strings #1' => [
+            'multibyte character diff #1' => [
                 new Character(),
                 'tränenüberströmt',
                 '',
                 'd16',
                 '<del>tr&auml;nen&uuml;berstr&ouml;mt</del>'
             ],
-            'multibyte strings #2' => [
+            'multibyte character diff #2' => [
                 new Character(),
                 '',
                 'tränenüberströmt',
                 'i16:tränenüberströmt',
                 '<ins>tr&auml;nen&uuml;berstr&ouml;mt</ins>'
             ],
-            'multibyte strings #3' => [
+            'multibyte character diff #3' => [
                 new Character(),
                 'tränenüberströmt',
                 'tränenuebärströmt',
                 'c6di2:uecdi:äc7',
                 'tr&auml;nen<del>&uuml;</del><ins>ue</ins>b<del>e</del><ins>&auml;</ins>rstr&ouml;mt'
             ],
-            'multibyte word #1' => [ // This is broken.
+            'word diff' => [
+                new Word(),
+                'Hello world',
+                'Hello world2',
+                'c6d5i6:world2',
+                'Hello <del>world</del><ins>world2</ins>'
+            ],
+            'multibyte word diff #1' => [
                 new Word(),
                 'Héllo world',
                 'Héllo world2',
-                'c7d4i5:orld2',
-                'H&eacute;llo w<del>orld</del><ins>orld2</ins>'
+                'c6d5i6:world2',
+                'H&eacute;llo <del>world</del><ins>world2</ins>'
             ],
-            'multibyte word #2' => [ // This is broken.
+            'multibyte word #2' => [
                 new Word(),
                 'Héllò world',
                 'Héllò world2',
-                'c8d3i4:rld2',
-                'H&eacute;ll&ograve; wo<del>rld</del><ins>rld2</ins>'
+                'c6d5i6:world2',
+                'H&eacute;ll&ograve; <del>world</del><ins>world2</ins>'
             ],
             'html special chars are converted #1' => [
                 new Character(),

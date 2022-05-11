@@ -139,7 +139,7 @@ class Parser implements ParserInterface
     protected function process(string $from_text, string $to_text): void
     {
         // Lets get parsing
-        $delimiters     = $this->granularity[$this->stackpointer++] ?? '';
+        $delimiters = $this->granularity[$this->stackpointer++] ?? [];
         $has_next_stage = $this->stackpointer < count($this->granularity);
 
         // Actually perform diff
@@ -175,11 +175,11 @@ class Parser implements ParserInterface
      *
      * @return array<int, OperationInterface>
      */
-    protected function diff(string $from_text, string $to_text, string $delimiters): array
+    protected function diff(string $from_text, string $to_text, array $delimiters): array
     {
         // Empty delimiter means character-level diffing.
         // In such case, use code path optimized for character-level diffing.
-        if (empty($delimiters)) {
+        if (empty(implode('', $delimiters))) {
             return $this->charDiff($from_text, $to_text);
         }
 
@@ -416,21 +416,32 @@ class Parser implements ParserInterface
      *
      * @return array<int, string>
     */
-    protected function extractFragments(string $text, string $delimiters)
+    protected function extractFragments(string $text, array $delimiters)
     {
+        $charCount = mb_strlen($text);
         $fragments = [];
-        $start     = 0;
-        $end       = 0;
-        for (;;) {
-            $end += strcspn($text, $delimiters, $end);
-            $end += strspn($text, $delimiters, $end);
-            if ($end === $start) {
-                break;
+        $currentFragmentString = '';
+        $fragmentStartPosition = 0;
+        $foundDelimiterInFragment = false;
+        for ($currentPosition = 0; $currentPosition < $charCount; $currentPosition++) {
+            $character = mb_substr($text, $currentPosition, 1, 'UTF-8');
+            $isDelimiterCharacter = in_array($character, $delimiters, true);
+            if ($isDelimiterCharacter) {
+                $currentFragmentString .= $character;
+                $foundDelimiterInFragment = true;
+            } elseif ($foundDelimiterInFragment && !$isDelimiterCharacter) {
+                $foundDelimiterInFragment = false;
+                $fragments[$fragmentStartPosition] = $currentFragmentString;
+                $fragmentStartPosition = $currentPosition;
+                $currentFragmentString = $character;
+            } else {
+                $currentFragmentString .= $character;
             }
-            $fragments[$start] = mb_substr($text, $start, $end - $start);
-            $start             = $end;
         }
-        $fragments[$start] = '';
+        if (mb_strlen($currentFragmentString) > 0) {
+            $fragments[$fragmentStartPosition] = $currentFragmentString;
+        }
+        $fragments[$charCount] = '';
         return $fragments;
     }
 }
