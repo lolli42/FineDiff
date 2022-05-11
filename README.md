@@ -16,7 +16,7 @@ Installation
 ------------
 
 ```
-composer req lolli42/finediff
+$ composer req lolli42/finediff
 ```
 
 Tags
@@ -67,6 +67,30 @@ echo $diff->getOpcodes('hello world', 'hello2 worlds');
 // Means: copy 5 chars "hello", then insert "2", then copy 6 chars " world", then insert "s"
 echo $diff->process('hello wordl', 'c5i:2c6i:s');
 // hello<ins>2</ins> world<ins>s</ins>
+```
+
+Running tests
+-------------
+
+Full test run:
+
+```
+$ composer update
+$ vendor/bin/phpunit
+```
+
+Restricting to single files:
+
+```
+$ composer update
+$ vendor/bin/phpunit tests/DiffTest.php
+```
+
+Casual setup to run tests with xdebug (3.x) enabled, an IDE like phpstorm should then break point:
+
+```
+$ composer update
+$ XDEBUG_MODE="debug,develop" XDEBUG_TRIGGER="foo" vendor/bin/phpunit
 ```
 
 History
