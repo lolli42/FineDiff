@@ -139,6 +139,7 @@ class Parser implements ParserInterface
     protected function process(string $from_text, string $to_text): void
     {
         // Lets get parsing
+        /** @var array<int, string> $delimiters */
         $delimiters = $this->granularity[$this->stackpointer++] ?? [];
         $has_next_stage = $this->stackpointer < count($this->granularity);
 
@@ -173,6 +174,7 @@ class Parser implements ParserInterface
     /**
      * Core parsing function.
      *
+     * @param array<int, string> $delimiters
      * @return array<int, OperationInterface>
      */
     protected function diff(string $from_text, string $to_text, array $delimiters): array
@@ -408,14 +410,15 @@ class Parser implements ParserInterface
     }
 
     /**
-    * Efficiently fragment the text into an array according to specified delimiters.
-    *
-    * The array indices are the offset of the fragments into
-    * the input string. A sentinel empty fragment is always added at the end.
-    * Careful: No check is performed as to the validity of the delimiters.
+     * Efficiently fragment the text into an array according to specified delimiters.
      *
+     * The array indices are the offset of the fragments into
+     * the input string. A sentinel empty fragment is always added at the end.
+     * Careful: No check is performed as to the validity of the delimiters.
+     *
+     * @param array<int, string> $delimiters
      * @return array<int, string>
-    */
+     */
     protected function extractFragments(string $text, array $delimiters)
     {
         $charCount = mb_strlen($text);
@@ -429,7 +432,7 @@ class Parser implements ParserInterface
             if ($isDelimiterCharacter) {
                 $currentFragmentString .= $character;
                 $foundDelimiterInFragment = true;
-            } elseif ($foundDelimiterInFragment && !$isDelimiterCharacter) {
+            } elseif ($foundDelimiterInFragment) {
                 $foundDelimiterInFragment = false;
                 $fragments[$fragmentStartPosition] = $currentFragmentString;
                 $fragmentStartPosition = $currentPosition;

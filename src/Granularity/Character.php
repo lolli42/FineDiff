@@ -23,7 +23,7 @@ use cogpowered\FineDiff\Delimiters;
 class Character extends Granularity
 {
     /**
-     * @var array<int, string>
+     * @var array<int, array<int, string>>
      */
     protected $delimiters = [
         Delimiters::PARAGRAPH,

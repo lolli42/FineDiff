@@ -25,9 +25,9 @@ class DelimitersTest extends TestCase
      */
     public function constantsAsExpected(): void
     {
-        self::assertEquals("\n\r", Delimiters::PARAGRAPH);
-        self::assertEquals(".\n\r", Delimiters::SENTENCE);
-        self::assertEquals(" \t.\n\r", Delimiters::WORD);
-        self::assertEquals('', Delimiters::CHARACTER);
+        self::assertSame(["\n", "\r"], Delimiters::PARAGRAPH);
+        self::assertSame(['.', "\n", "\r"], Delimiters::SENTENCE);
+        self::assertSame([' ', "\t", '.', "\n", "\r"], Delimiters::WORD);
+        self::assertSame([''], Delimiters::CHARACTER);
     }
 }

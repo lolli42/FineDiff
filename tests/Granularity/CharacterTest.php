@@ -58,7 +58,7 @@ class CharacterTest extends TestCase
      */
     public function setAndGetDelimiters(): void
     {
-        $delimiters = ['one', 'two'];
+        $delimiters = [['one'], ['two']];
         $subject = new Character();
         $subject->setDelimiters($delimiters);
         self::assertEquals($delimiters, $subject->getDelimiters());

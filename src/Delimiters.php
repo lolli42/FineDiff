@@ -23,8 +23,8 @@ namespace cogpowered\FineDiff;
 abstract class Delimiters
 {
     public const PARAGRAPH = ["\n", "\r"];
-    public const SENTENCE = [".", "\n", "\r"];
-    public const WORD = [" ", "\t", ".", "\n", "\r"];
+    public const SENTENCE = ['.', "\n", "\r"];
+    public const WORD = [' ', "\t", '.', "\n", "\r"];
     public const CHARACTER = [''];
 
     /**
