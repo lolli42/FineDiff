@@ -186,6 +186,20 @@ class DiffTest extends TestCase
                 'c6di2:uecdi:äc7',
                 'tr&auml;nen<del>&uuml;</del><ins>ue</ins>b<del>e</del><ins>&auml;</ins>rstr&ouml;mt'
             ],
+            'multibyte word #1' => [ // This is broken.
+                new Word(),
+                'Héllo world',
+                'Héllo world2',
+                'c7d4i5:orld2',
+                'H&eacute;llo w<del>orld</del><ins>orld2</ins>'
+            ],
+            'multibyte word #2' => [ // This is broken.
+                new Word(),
+                'Héllò world',
+                'Héllò world2',
+                'c8d3i4:rld2',
+                'H&eacute;ll&ograve; wo<del>rld</del><ins>rld2</ins>'
+            ],
             'html special chars are converted #1' => [
                 new Character(),
                 'foo<bär>baz',
