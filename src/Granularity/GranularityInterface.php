@@ -26,14 +26,14 @@ interface GranularityInterface extends ArrayAccess, Countable
     /**
      * Get the delimiters that make up the granularity.
      *
-     * @return array<int, string>
+     * @return array<int, array<int, string>>
      */
     public function getDelimiters(): array;
 
     /**
      * Set the delimiters that make up the granularity.
      *
-     * @param array<int, string> $delimiters
+     * @param array<int, array<int, string>> $delimiters
      */
     public function setDelimiters(array $delimiters): void;
 }
