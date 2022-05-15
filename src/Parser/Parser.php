@@ -427,6 +427,8 @@ class Parser implements ParserInterface
         $fragmentStartPosition = 0;
         $foundDelimiterInFragment = false;
         for ($currentPosition = 0; $currentPosition < $charCount; $currentPosition++) {
+            // @todo: Using mb_str_split() before the loop once is significantly quicker than using
+            //        mb_substr() for each char of the text and mb_strlen() won't be needed.
             $character = mb_substr($text, $currentPosition, 1, 'UTF-8');
             $isDelimiterCharacter = in_array($character, $delimiters, true);
             if ($isDelimiterCharacter) {
