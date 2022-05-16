@@ -264,7 +264,7 @@ class Parser implements ParserInterface
                     $fragment_index_offset = $from_base_fragment_length;
 
                     // iterate until no more match
-                    for (;;) {
+                    do {
                         $fragment_from_index = $from_base_fragment_index + $fragment_index_offset;
 
                         if ($fragment_from_index >= $from_segment_end) {
@@ -283,7 +283,7 @@ class Parser implements ParserInterface
 
                         $fragment_length = mb_strlen($from_fragments[$fragment_from_index]);
                         $fragment_index_offset += $fragment_length;
-                    }
+                    } while(true);
 
                     if ($fragment_index_offset > $best_copy_length) {
                         $best_copy_length = $fragment_index_offset;
@@ -426,10 +426,8 @@ class Parser implements ParserInterface
         $currentFragmentString = '';
         $fragmentStartPosition = 0;
         $foundDelimiterInFragment = false;
-        for ($currentPosition = 0; $currentPosition < $charCount; $currentPosition++) {
-            // @todo: Using mb_str_split() before the loop once is significantly quicker than using
-            //        mb_substr() for each char of the text and mb_strlen() won't be needed.
-            $character = mb_substr($text, $currentPosition, 1, 'UTF-8');
+        $chars = mb_str_split($text, 1, 'UTF-8');
+        foreach($chars as $currentPosition => $character) {
             $isDelimiterCharacter = in_array($character, $delimiters, true);
             if ($isDelimiterCharacter) {
                 $currentFragmentString .= $character;
