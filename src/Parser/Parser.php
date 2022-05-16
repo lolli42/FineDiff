@@ -283,7 +283,7 @@ class Parser implements ParserInterface
 
                         $fragment_length = mb_strlen($from_fragments[$fragment_from_index]);
                         $fragment_index_offset += $fragment_length;
-                    } while(true);
+                    } while (true);
 
                     if ($fragment_index_offset > $best_copy_length) {
                         $best_copy_length = $fragment_index_offset;
@@ -427,7 +427,7 @@ class Parser implements ParserInterface
         $fragmentStartPosition = 0;
         $foundDelimiterInFragment = false;
         $chars = mb_str_split($text, 1, 'UTF-8');
-        foreach($chars as $currentPosition => $character) {
+        foreach ($chars as $currentPosition => $character) {
             $isDelimiterCharacter = in_array($character, $delimiters, true);
             if ($isDelimiterCharacter) {
                 $currentFragmentString .= $character;
