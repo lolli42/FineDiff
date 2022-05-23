@@ -89,7 +89,7 @@ class DiffTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<string, array<int, mixed>>
      */
     public function processAndRenderDataProvider(): array
     {

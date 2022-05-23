@@ -54,7 +54,7 @@ class ReplaceTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<string, array<int, int|string>>
      */
     public function getOpcodeDataProvider(): array
     {
