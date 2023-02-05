@@ -91,7 +91,7 @@ class DiffTest extends TestCase
     /**
      * @return array<string, array<int, mixed>>
      */
-    public function processAndRenderDataProvider(): array
+    public static function processAndRenderDataProvider(): array
     {
         return [
             'empty strings' => [
