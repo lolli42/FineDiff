@@ -24,9 +24,9 @@
         "symfony/polyfill-mbstring": "^1.23"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5.29 || ^9.5.24",
+        "phpunit/phpunit": "^8.5.32 || ^9.6.3 || ^10.0.3",
         "friendsofphp/php-cs-fixer": "^3.4",
-        "phpstan/phpstan": "^1.6"
+        "phpstan/phpstan": "^1.9.14"
     },
     "replace": {
         "cogpowered/finediff": "*"

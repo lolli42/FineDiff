@@ -56,7 +56,7 @@ class ReplaceTest extends TestCase
     /**
      * @return array<string, array<int, int|string>>
      */
-    public function getOpcodeDataProvider(): array
+    public static function getOpcodeDataProvider(): array
     {
         return [
             'replace single char' => [
