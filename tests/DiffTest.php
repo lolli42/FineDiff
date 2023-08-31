@@ -165,6 +165,34 @@ class DiffTest extends TestCase
                 'This is the 1st sentence.<del> Its then carried on into another.\n</del><ins> It then carries on into another.'
                     . chr(10) . '</ins>This is another paragraph, just to test things further!',
             ],
+            'character level with added line' => [
+                new Character(),
+                'Hello',
+                'Hello' . chr(10) . 'World',
+                'c5i6:' . chr(10) . 'World',
+                'Hello<ins>' . chr(10) . 'World</ins>',
+            ],
+            'word level with added line' => [
+                new Word(),
+                'Hello',
+                'Hello' . chr(10) . 'World',
+                'd5i11:Hello' . chr(10) . 'World',
+                '<del>Hello</del><ins>Hello' . chr(10) . 'World</ins>',
+            ],
+            'paragraph level with added line' => [
+                new Paragraph(),
+                'Hello',
+                'Hello' . chr(10) . 'World',
+                'd5i11:Hello' . chr(10) . 'World',
+                '<del>Hello</del><ins>Hello' . chr(10) . 'World</ins>',
+            ],
+            'sentence level with added line' => [
+                new Sentence(),
+                'Hello',
+                'Hello' . chr(10) . 'World',
+                'd5i11:Hello' . chr(10) . 'World',
+                '<del>Hello</del><ins>Hello' . chr(10) . 'World</ins>',
+            ],
             'multibyte character diff #1' => [
                 new Character(),
                 'tränenüberströmt',
