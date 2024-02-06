@@ -19,21 +19,18 @@ use cogpowered\FineDiff\Exceptions\OperationException;
 use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Operations\Copy;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class OpcodesTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function isInstanceOfOpcodesInterface(): void
     {
         self::assertInstanceOf(OpcodesInterface::class, new Opcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setOpcodesThrowsExceptionOnInvalidOperation(): void
     {
         $this->expectException(OperationException::class);
@@ -41,17 +38,13 @@ class OpcodesTest extends TestCase
         $opcodes->setOpcodes(['test']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOpcodesReturnsEmptyOpcodes(): void
     {
         self::assertSame([], (new Opcodes())->getOpcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOpcodesProcessSimpleOperation(): void
     {
         $copyOperation = new Copy(0);
@@ -60,9 +53,7 @@ class OpcodesTest extends TestCase
         self::assertEquals(['c0'], $subject->getOpcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOpcodesProcessMultipleOperations(): void
     {
         $copyOperation1 = new Copy(3);
@@ -72,9 +63,7 @@ class OpcodesTest extends TestCase
         self::assertEquals(['c3', 'c5'], $subject->getOpcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function generateReturnsOpcode(): void
     {
         $copyOperation1 = new Copy(3);
@@ -84,9 +73,7 @@ class OpcodesTest extends TestCase
         self::assertEquals('c3c5', $subject->generate());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function castToString(): void
     {
         $copyOperation1 = new Copy(3);

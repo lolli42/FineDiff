@@ -16,13 +16,12 @@ declare(strict_types=1);
 namespace cogpowered\FineDiff\Tests;
 
 use cogpowered\FineDiff\Delimiters;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class DelimitersTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function constantsAsExpected(): void
     {
         self::assertSame(["\n", "\r"], Delimiters::PARAGRAPH);

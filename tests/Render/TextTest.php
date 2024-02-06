@@ -16,30 +16,25 @@ declare(strict_types=1);
 namespace cogpowered\FineDiff\Tests\Render;
 
 use cogpowered\FineDiff\Render\Text;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class TextTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function processThrowsWithInvalidOpcodes(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         (new Text())->process('Hello worlds', 123);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function processWorksWithSimpleString(): void
     {
         self::assertEquals('Hello2 world', (new Text())->process('Hello worlds', 'c5i:2c6d'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function callbackReturnsExpectedResults(): void
     {
         $subject = new Text();

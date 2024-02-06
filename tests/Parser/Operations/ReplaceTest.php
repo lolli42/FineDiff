@@ -17,37 +17,31 @@ namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\OperationInterface;
 use cogpowered\FineDiff\Parser\Operations\Replace;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ReplaceTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function instanceImplementsOperationsInterface(): void
     {
         self::assertInstanceOf(OperationInterface::class, new Replace(2, 'world'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFromLen(): void
     {
         self::assertEquals(5, (new Replace(5, 'world'))->getFromLen());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function testGetText(): void
     {
         self::assertEquals('bar', (new Replace(3, 'bar'))->getText());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getToLen(): void
     {
         self::assertEquals(5, (new Replace(3, 'world'))->getToLen());
@@ -82,10 +76,8 @@ class ReplaceTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider getOpcodeDataProvider
-     */
+    #[Test]
+    #[DataProvider('getOpcodeDataProvider')]
     public function getOpcode(int $fromLen, string $text, string $expected): void
     {
         self::assertSame($expected, (new Replace($fromLen, $text))->getOpcode());

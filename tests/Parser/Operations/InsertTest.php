@@ -17,45 +17,36 @@ namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\Insert;
 use cogpowered\FineDiff\Parser\Operations\OperationInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class InsertTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function instanceImplementsOperationsInterface(): void
     {
         self::assertInstanceOf(OperationInterface::class, new Insert('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFromLenFromDefault(): void
     {
         self::assertEquals(0, (new Insert('hello world'))->getFromLen());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function testGetToLenFromConstruct(): void
     {
         self::assertEquals(11, (new Insert('hello world'))->getToLen());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTextFromConstruct(): void
     {
         self::assertEquals('foobar', (new Insert('foobar'))->getText());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOpcode(): void
     {
         self::assertEquals('i:C', (new Insert('C'))->getOpcode());

@@ -16,21 +16,18 @@ declare(strict_types=1);
 namespace cogpowered\FineDiff\Tests\Render;
 
 use cogpowered\FineDiff\Render\Html;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class HtmlTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function processWorksWithSimpleString(): void
     {
         self::assertEquals('Hello<ins>2</ins> world<del>s</del>', (new Html())->process('Hello worlds', 'c5i:2c6d'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function callbackReturnsExpectedResults(): void
     {
         $subject = new Html();

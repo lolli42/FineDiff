@@ -17,46 +17,37 @@ namespace cogpowered\FineDiff\Tests\Parser\Operations;
 
 use cogpowered\FineDiff\Parser\Operations\Copy;
 use cogpowered\FineDiff\Parser\Operations\OperationInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CopyTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function instanceImplementsOperationsInterface(): void
     {
         self::assertInstanceOf(OperationInterface::class, new Copy(10));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFromLenFromConstruct(): void
     {
         self::assertEquals(10, (new Copy(10))->getFromLen());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getToLenFromContstruct(): void
     {
         self::assertEquals(342, (new Copy(342))->getToLen());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOpcodes(): void
     {
         self::assertEquals('c', (new Copy(1))->getOpcode());
         self::assertEquals('c24', (new Copy(24))->getOpcode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function increase(): void
     {
         $copy = new Copy(25);

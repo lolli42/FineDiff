@@ -18,13 +18,12 @@ namespace cogpowered\FineDiff\Tests\Granularity;
 use cogpowered\FineDiff\Delimiters;
 use cogpowered\FineDiff\Granularity\GranularityInterface;
 use cogpowered\FineDiff\Granularity\Sentence;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SentenceTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function instanceImplementsClasses(): void
     {
         self::assertInstanceOf(\Countable::class, new Sentence());
@@ -32,9 +31,7 @@ class SentenceTest extends TestCase
         self::assertInstanceOf(GranularityInterface::class, new Sentence());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDelimitersReturnsDelimiters(): void
     {
         self::assertEquals([Delimiters::PARAGRAPH, Delimiters::SENTENCE], (new Sentence())->getDelimiters());
