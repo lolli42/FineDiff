@@ -60,7 +60,7 @@ abstract class Renderer implements RendererInterface
                 // delete n characters from source
                 $data = $this->callback('d', $from_text, $from_offset, $n);
                 $from_offset += $n;
-            } else /* if ( $opcode === 'i' ) */ {
+            } else { /* if ( $opcode === 'i' ) */
                 // insert n characters from opcodes
                 $data = $this->callback('i', $opcodes, $opcodes_offset + 1, $n);
                 $opcodes_offset += 1 + $n;
