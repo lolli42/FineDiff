@@ -39,7 +39,6 @@ jobs:
         run: vendor/bin/php-cs-fixer fix --diff --dry-run
 
       - name: Phpstan
-        if: ${{ matrix.php <= '8.0' }}
         run: vendor/bin/phpstan analyze --no-progress
 
       - name: Phpunit
