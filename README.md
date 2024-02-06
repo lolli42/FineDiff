@@ -22,7 +22,8 @@ $ composer req lolli42/finediff
 Tags
 ----
 
-* **1.x** Dropped PHP <7.2, has PHP >=7.2 support, added multibyte support, forces strict types, E_ALL error free
+* **1.1** Dropped PHP <8.2
+* **1.0** Dropped PHP <7.2, has PHP >=7.2 support, added multibyte support, forces strict types, E_ALL error free
 * **<1.x** is identical to cogpowered/finediff from ([https://github.com/cogpowered/FineDiff](https://github.com/cogpowered/FineDiff))
 
 Usage
