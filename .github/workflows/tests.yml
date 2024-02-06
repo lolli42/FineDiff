@@ -43,10 +43,5 @@ jobs:
         if: ${{ matrix.php <= '8.0' }}
         run: vendor/bin/phpstan analyze --no-progress
 
-      - name: Phpunit v8 and v9
-        if: ${{ matrix.php <= '8.0' }}
-        run: vendor/bin/phpunit -c phpunit-v9.xml.dist
-
-      - name: Phpunit v10
-        if: ${{ matrix.php >= '8.1' }}
+      - name: Phpunit
         run: vendor/bin/phpunit
