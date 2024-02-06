@@ -199,7 +199,6 @@ class Parser implements ParserInterface
         $best_to_start = 0;
 
         while ($job = array_pop($jobs)) {
-
             // get the segments which must be diff'ed
             list($from_segment_start, $from_segment_end, $to_segment_start, $to_segment_end) = $job;
 
@@ -333,7 +332,6 @@ class Parser implements ParserInterface
         $to_copy_start = 0;
 
         while ($job = array_pop($jobs)) {
-
             // get the segments which must be diff'ed
             list($from_segment_start, $from_segment_end, $to_segment_start, $to_segment_end) = $job;
 

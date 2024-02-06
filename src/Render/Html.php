@@ -29,7 +29,7 @@ class Html extends Renderer
             }
 
             $html = '<del>' . htmlentities($deletion) . '</del>';
-        } else /* if ( $opcode === 'i' ) */ {
+        } else { /* if ( $opcode === 'i' ) */
             $html = '<ins>' . htmlentities(mb_substr($from, $from_offset, $from_len)) . '</ins>';
         }
 
