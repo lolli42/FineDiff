@@ -22,29 +22,24 @@ use cogpowered\FineDiff\Parser\Opcodes;
 use cogpowered\FineDiff\Parser\OpcodesInterface;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Parser\ParserInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function isInstanceOfParserInterface(): void
     {
         self::assertInstanceOf(ParserInterface::class, new Parser(new Character()));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function opcodesIsCreated(): void
     {
         self::assertInstanceOf(OpcodesInterface::class, (new Parser(new Character()))->getOpcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function opcodesCanBeSetAndSet(): void
     {
         $opcodes = new Opcodes();
@@ -53,9 +48,7 @@ class ParserTest extends TestCase
         self::assertSame($opcodes, $subject->getOpcodes());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function parseThrowsWithEmptyGranularity(): void
     {
         $this->expectException(GranularityCountException::class);

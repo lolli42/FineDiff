@@ -24,13 +24,13 @@ use cogpowered\FineDiff\Granularity\Word;
 use cogpowered\FineDiff\Parser\Parser;
 use cogpowered\FineDiff\Render\Html;
 use cogpowered\FineDiff\Render\Text;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class DiffTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function getDefaultInstances(): void
     {
         $diff = new Diff();
@@ -39,9 +39,7 @@ class DiffTest extends TestCase
         self::assertInstanceOf(Parser::class, $diff->getParser());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function instancesFromConstruct(): void
     {
         $character = new Character();
@@ -52,9 +50,7 @@ class DiffTest extends TestCase
         self::assertSame($parser, (new Diff(null, null, $parser))->getParser());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setAndGetParser(): void
     {
         $parser = new Parser(new Word());
@@ -63,9 +59,7 @@ class DiffTest extends TestCase
         self::assertEquals($parser, $subject->getParser());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setAndGetRenderer(): void
     {
         $renderer = new Html();
@@ -74,9 +68,7 @@ class DiffTest extends TestCase
         self::assertEquals($renderer, $subject->getRenderer());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setAndGetGranularity(): void
     {
         $parser = new Parser(new Word());
@@ -266,10 +258,8 @@ class DiffTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider processAndRenderDataProvider
-     * @test
-     */
+    #[Test]
+    #[DataProvider('processAndRenderDataProvider')]
     public function parseAndRender(
         GranularityInterface $granularity,
         string $from,
