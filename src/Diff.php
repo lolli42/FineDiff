@@ -50,7 +50,7 @@ class Diff
      * @param RendererInterface|null $renderer Diff renderer.
      * @param ParserInterface|null $parser Parser used to generate opcodes.
      */
-    public function __construct(GranularityInterface $granularity = null, RendererInterface $renderer = null, ParserInterface $parser = null)
+    public function __construct(?GranularityInterface $granularity = null, ?RendererInterface $renderer = null, ?ParserInterface $parser = null)
     {
         $this->granularity = $granularity ?? new Character();
         $this->renderer = $renderer ?? new Html();
