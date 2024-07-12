@@ -37,7 +37,7 @@ jobs:
 
       - name: CGL check
         if: ${{ matrix.php <= '8.3' }}
-        run: vendor/bin/php-cs-fixer fix --diff --dry-run
+        run: vendor/bin/php-cs-fixer fix --diff --dry-run -v
 
       - name: Phpstan
         if: ${{ matrix.php <= '8.3' }}
