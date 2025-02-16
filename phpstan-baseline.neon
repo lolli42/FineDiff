@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Instanceof between cogpowered\\FineDiff\\Parser\\Operations\\OperationInterface and cogpowered\\FineDiff\\Parser\\Operations\\OperationInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/Parser/Opcodes.php
+
+		-
+			message: '#^Parameter \#1 \$opcodes of method cogpowered\\FineDiff\\Parser\\Opcodes\:\:setOpcodes\(\) expects array\<int, cogpowered\\FineDiff\\Parser\\Operations\\OperationInterface\>, array\<int, string\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Parser/OpcodesTest.php
